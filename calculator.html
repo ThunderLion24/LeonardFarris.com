@@ -168,7 +168,7 @@ function evaluate() {
  
     histEl.textContent = state.expr + ' =';
     state.expr = String(result);
-    render();
+    mainEl.textContent = 'Leonard GPT says ' + state.expr;
   } catch {
     mainEl.textContent = 'Error';
     state.expr = '';
