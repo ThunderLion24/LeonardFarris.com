@@ -48,7 +48,7 @@
     <script>
         function updateClock() {
             const now = new Date();
-            const bst = new Date(now.toLocaleString('en-GB', { timeZone: 'Europe/London' }));
+            const bst = new Date(now); //.toLocaleString('en-GB', { timeZone: 'Europe/London' }));
             const h = String(bst.getHours()).padStart(2, '0');
             const m = String(bst.getMinutes()).padStart(2, '0');
             const s = String(bst.getSeconds()).padStart(2, '0');
