@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 50px 0 30px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #e94560;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.hero h1 span {
+    color: #e94560;
+}
+
+.hero .subtitle {
+    font-size: 1.1rem;
+    color: #a0aec0;
+}
+
+/* Divider */
+.divider {
+    width: 60px;
+    height: 3px;
+    background: #e94560;
+    margin: 36px auto;
+    border-radius: 2px;
+}
+
+/* Hobby Grid */
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.hobby-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    border-color: #e94560;
+    background: rgba(233, 69, 96, 0.08);
+}
+
+.hobby-card .icon {
+    font-size: 2.6rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.hobby-card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.hobby-card p {
+    font-size: 0.92rem;
+    color: #a0aec0;
+    line-height: 1.65;
+}
+
+/* Tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tag {
+    background: rgba(233, 69, 96, 0.15);
+    border: 1px solid rgba(233, 69, 96, 0.4);
+    color: #e94560;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-bottom: 30px;
+    color: #4a5568;
+    font-size: 0.85rem;
+}
