@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheet.css">
+    <title>Homepage | Leonard Farris</title>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Leonard <span>James Farris</span></h1>
+            <p class="subtitle">Student at CLIP Oporto International School</p>
+
+            <div class="clock-card">
+                <div class="clock-label">Current Time (BST)</div>
+                <div class="clock-time" id="clock">--:--:--</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <nav class="nav-grid">
+            <a class="nav-card" href="Aboutme.html">
+                <span class="icon">👤</span>
+                <h2>About Me</h2>
+                <p>Learn more about who I am and my background.</p>
+            </a>
+
+            <a class="nav-card" href="Hobbies.html">
+                <span class="icon">🎯</span>
+                <h2>Hobbies</h2>
+                <p>Explore my interests and what I enjoy doing.</p>
+            </a>
+
+            <a class="nav-card" href="calculator.pyt" download>
+                <span class="icon">🧮</span>
+                <h2>Calculator</h2>
+                <p>Download my Python calculator project.</p>
+            </a>
+        </nav>
+
+        <footer>
+            &copy; 2026 Leonard James Farris &mdash; CLIP Oporto International School
+        </footer>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const bst = new Date(now.toLocaleString('en-GB', { timeZone: 'Europe/London' }));
+            const h = String(bst.getHours()).padStart(2, '0');
+            const m = String(bst.getMinutes()).padStart(2, '0');
+            const s = String(bst.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
