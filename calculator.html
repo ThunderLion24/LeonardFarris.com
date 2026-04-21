@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scientific Calculator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #11111b;
+    font-family: 'JetBrains Mono', monospace;
+  }
+ 
+  .calc {
+    background: #1e1e2e;
+    border-radius: 20px;
+    padding: 24px;
+    width: 340px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    border: 1px solid #313244;
+  }
+ 
+  .display {
+    background: #181825;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    border: 1px solid #313244;
+    min-height: 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .display-history {
+    font-size: 12px;
+    color: #6c7086;
+    min-height: 18px;
+    word-break: break-all;
+    text-align: right;
+  }
+  .display-main {
+    font-size: 30px;
+    font-weight: 700;
+    color: #cdd6f4;
+    word-break: break-all;
+    text-align: right;
+    line-height: 1.2;
+    margin-top: 4px;
+  }
+ 
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+ 
+  button {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+    height: 52px;
+    cursor: pointer;
+    transition: filter 0.1s, transform 0.1s;
+    color: #cdd6f4;
+    letter-spacing: 0.02em;
+  }
+  button:hover  { filter: brightness(1.15); }
+  button:active { transform: scale(0.94); filter: brightness(0.9); }
+ 
+  .col2 { grid-column: span 2; }
+ 
+  .clr-util   { background: #45475a; }
+  .clr-del    { background: #f38ba8; color: #1e1e2e; }
+  .clr-sci    { background: #89b4fa; color: #1e1e2e; }
+  .clr-const  { background: #cba6f7; color: #1e1e2e; }
+  .clr-op     { background: #fab387; color: #1e1e2e; }
+  .clr-num    { background: #313244; }
+  .clr-eq     { background: #a6e3a1; color: #1e1e2e; }
+  .clr-shift  { background: #45475a; }
+  .clr-shift.active { background: #f9e2af; color: #1e1e2e; }
+</style>
+</head>
+<body>
+<div class="calc">
+  <div class="display">
+    <div class="display-history" id="history"></div>
+    <div class="display-main" id="main">0</div>
+  </div>
+ 
+  <div class="grid" id="grid"></div>
+</div>
+ 
+<script>
+const state = { expr: '', shift: false };
+ 
+const buttons = [
+  ['SHIFT','shift','clr-shift',1], ['(','(','clr-util',1], [')',')', 'clr-util',1],
+  ['⌫','back','clr-del',1],        ['AC','clear','clr-del',1],
+ 
+  ['sin','sin','clr-sci',1], ['cos','cos','clr-sci',1], ['tan','tan','clr-sci',1],
+  ['xʸ','pow','clr-const',1], ['÷','/','clr-op',1],
+ 
+  ['log','log','clr-sci',1], ['ln','ln','clr-sci',1], ['√','sqrt','clr-sci',1],
+  ['π','pi','clr-const',1], ['×','*','clr-op',1],
+ 
+  ['7','7','clr-num',1], ['8','8','clr-num',1], ['9','9','clr-num',1],
+  ['e','e','clr-const',1], ['−','-','clr-op',1],
+ 
+  ['4','4','clr-num',1], ['5','5','clr-num',1], ['6','6','clr-num',1],
+  ['x²','sq','clr-const',1], ['+','+','clr-op',1],
+ 
+  ['1','1','clr-num',1], ['2','2','clr-num',1], ['3','3','clr-num',1],
+  ['1/x','inv','clr-const',1], ['%','%','clr-op',1],
+ 
+  ['0','0','clr-num',2], ['.','.',  'clr-num',1],
+  ['±','neg','clr-const',1], ['=','=','clr-eq',1],
+];
+ 
+const inserts = {
+  sin:'sin(', cos:'cos(', tan:'tan(', log:'log(', ln:'ln(',
+  sqrt:'√(', pow:'^', sq:'^2', inv:'^-1',
+  pi:'π', e:'ℯ', neg:'neg',
+  '%':'%', '(':'(', ')':')',
+  '+':'+', '-':'-', '*':'×', '/':'÷',
+};
+ 
+const mainEl = document.getElementById('main');
+const histEl = document.getElementById('history');
+const grid   = document.getElementById('grid');
+const btnMap  = {};
+ 
+function render() {
+  mainEl.textContent = state.expr || '0';
+}
+ 
+function evaluate() {
+  let expr = state.expr;
+  try {
+    expr = expr.replace(/×/g,'*').replace(/÷/g,'/');
+    expr = expr.replace(/π/g, String(Math.PI)).replace(/ℯ/g, String(Math.E));
+    expr = expr.replace(/\^/g,'**');
+    expr = expr.replace(/%/g,'/100');
+    expr = expr.replace(/√\(/g,'Math.sqrt(');
+    expr = expr.replace(/sin\(/g,'Math.sin(').replace(/cos\(/g,'Math.cos(').replace(/tan\(/g,'Math.tan(');
+    expr = expr.replace(/asin\(/g,'Math.asin(').replace(/acos\(/g,'Math.acos(').replace(/atan\(/g,'Math.atan(');
+    expr = expr.replace(/log\(/g,'Math.log10(').replace(/ln\(/g,'Math.log(');
+    expr = expr.replace(/neg(-?[\d.]+)/g,'(-$1)');
+ 
+    const raw = Function('"use strict"; return (' + expr + ')')();
+    let result = raw;
+    if (typeof result === 'number') {
+      if (!isFinite(result)) throw new Error('undefined');
+      result = parseFloat(result.toPrecision(12));
+      if (Number.isInteger(result)) result = Math.round(result);
+    }
+ 
+    histEl.textContent = state.expr + ' =';
+    state.expr = String(result);
+    render();
+  } catch {
+    mainEl.textContent = 'Error';
+    state.expr = '';
+    histEl.textContent = '';
+  }
+}
+ 
+function handle(action) {
+  if (action === 'clear') {
+    state.expr = ''; state.shift = false;
+    histEl.textContent = ''; render();
+    btnMap['shift'].className = btnMap['shift'].className.replace(' active','');
+    return;
+  }
+  if (action === 'back') {
+    state.expr = state.expr.slice(0,-1); render(); return;
+  }
+  if (action === '=') { evaluate(); return; }
+  if (action === 'shift') {
+    state.shift = !state.shift;
+    if (state.shift) { if (!btnMap['shift'].classList.contains('active')) btnMap['shift'].classList.add('active'); }
+    else             { btnMap['shift'].classList.remove('active'); }
+    updateShiftLabels();
+    return;
+  }
+ 
+  let a = action;
+  if (state.shift && ['sin','cos','tan'].includes(a)) {
+    a = 'a' + a;
+    state.shift = false;
+    btnMap['shift'].classList.remove('active');
+    updateShiftLabels();
+  }
+  if (state.shift && a === 'log') {
+    state.expr += '10^('; state.shift = false;
+    btnMap['shift'].classList.remove('active'); updateShiftLabels();
+    render(); return;
+  }
+  if (state.shift && a === 'ln') {
+    state.expr += 'ℯ^('; state.shift = false;
+    btnMap['shift'].classList.remove('active'); updateShiftLabels();
+    render(); return;
+  }
+ 
+  const chunk = { asin:'asin(', acos:'acos(', atan:'atan(' }[a] || inserts[a] || a;
+  state.expr += chunk;
+  render();
+}
+ 
+function updateShiftLabels() {
+  const labels = { sin: state.shift?'sin⁻¹':'sin', cos: state.shift?'cos⁻¹':'cos',
+                   tan: state.shift?'tan⁻¹':'tan', log: state.shift?'10ˣ':'log',
+                   ln:  state.shift?'eˣ':'ln' };
+  for (const [action, label] of Object.entries(labels)) {
+    if (btnMap[action]) btnMap[action].textContent = label;
+  }
+}
+ 
+buttons.forEach(([label, action, cls, span]) => {
+  const btn = document.createElement('button');
+  btn.textContent = label;
+  btn.className = cls;
+  if (span === 2) btn.classList.add('col2');
+  btn.addEventListener('click', () => handle(action));
+  btnMap[action] = btn;
+  grid.appendChild(btn);
+});
+ 
+document.addEventListener('keydown', e => {
+  const map = {
+    '0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9',
+    '.':'.', '+':'+', '-':'-', '*':'*', '/':'/', '%':'%',
+    'Enter':'=', '=':'=', 'Backspace':'back', 'Escape':'clear',
+    '(':'(', ')':')'
+  };
+  if (map[e.key]) { e.preventDefault(); handle(map[e.key]); }
+});
+</script>
+</body>
+</html>
