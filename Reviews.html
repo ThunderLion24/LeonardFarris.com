@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ReviewsSS.css">
+    <title>Reviews | Leonard Farris</title>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <a class="back-link" href="index.html">← Back to Home</a>
+            <h1>Leave a <span>Review</span></h1>
+            <p class="subtitle">Share your thoughts — I'd love to hear from you</p>
+            <a class="review-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeJMVVMT9PON-NM4TyTQ3UxHVa7710G9TkLTvO3vIDWZe_FeA/viewform?usp=publish-editor" target="_blank">Leave a Review</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- STEP 1: Replace the src below with your Google Form embed URL -->
+        <!-- Get it from: Google Forms → Send → Embed icon → copy the src URL -->
+        <div class="form-wrapper">
+            <iframe
+                id="review-form"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeJMVVMT9PON-NM4TyTQ3UxHVa7710G9TkLTvO3vIDWZe_FeA/viewform?usp=publish-editor"
+                height="600"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0">
+                Loading form…
+            </iframe>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 class="section-title">What People <span>Say</span></h2>
+        <p class="section-subtitle">Reviews update automatically every 2 minutes</p>
+
+        <div id="reviews-container" class="reviews-grid">
+            <p class="status-msg">Loading reviews…</p>
+        </div>
+
+        <p class="refresh-note" id="last-updated"></p>
+
+        <footer>
+            &copy; 2026 Leonard James Farris &mdash; CLIP Oporto International School
+        </footer>
+    </div>
+
+<script>
+    // STEP 2: Replace this with your published Google Sheet CSV URL.
+    // In Google Sheets: File → Share → Publish to web → Sheet1 → CSV → Publish → copy URL
+    const CSV_URL = 'PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE';
+
+    // Column indices in your sheet (0-based). Adjust if your form columns differ.
+    // Expected column order: Timestamp | Name | Rating (1-5) | Review
+    const COL_TIMESTAMP = 0;
+    const COL_NAME      = 1;
+    const COL_RATING    = 2;
+    const COL_REVIEW    = 3;
+
+    function parseCSV(text) {
+        const rows = [];
+        const lines = text.trim().split('\n');
+        for (let i = 1; i < lines.length; i++) { // skip header row
+            const cols = lines[i].match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+            rows.push(cols.map(c => c.replace(/^"|"$/g, '').trim()));
+        }
+        return rows;
+    }
+
+    function starsHTML(rating) {
+        const n = Math.min(5, Math.max(1, parseInt(rating) || 0));
+        return '★'.repeat(n) + '☆'.repeat(5 - n);
+    }
+
+    function renderReviews(rows) {
+        const container = document.getElementById('reviews-container');
+        if (!rows.length) {
+            container.innerHTML = '<p class="status-msg">No reviews yet — be the first!</p>';
+            return;
+        }
+        container.innerHTML = rows.slice().reverse().map(row => `
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="review-name">${escapeHTML(row[COL_NAME] || 'Anonymous')}</span>
+                    <span class="review-stars">${starsHTML(row[COL_RATING])}</span>
+                </div>
+                <p class="review-text">${escapeHTML(row[COL_REVIEW] || '')}</p>
+                <p class="review-date">${escapeHTML(row[COL_TIMESTAMP] || '')}</p>
+            </div>
+        `).join('');
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    async function fetchReviews() {
+        if (CSV_URL === 'PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE') {
+            document.getElementById('reviews-container').innerHTML =
+                '<p class="status-msg">Set up your Google Sheet CSV URL to display reviews.</p>';
+            return;
+        }
+        try {
+            // Cache-busting param so the browser doesn't serve a stale response
+            const res = await fetch(CSV_URL + '&cachebust=' + Date.now());
+            const text = await res.text();
+            renderReviews(parseCSV(text));
+            document.getElementById('last-updated').textContent =
+                'Last updated: ' + new Date().toLocaleTimeString();
+        } catch {
+            document.getElementById('reviews-container').innerHTML =
+                '<p class="status-msg">Could not load reviews. Check your CSV URL.</p>';
+        }
+    }
+
+    fetchReviews();
+    setInterval(fetchReviews, 2 * 60 * 1000); // refresh every 2 minutes
+</script>
+</body>
+</html>

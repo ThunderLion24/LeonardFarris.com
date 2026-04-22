@@ -29,7 +29,7 @@
                 <span class="icon">🧑</span>
                 <h3>Who I Am</h3>
                 <p>
-                    I'm 14 years old and currently living in Matosinhos, Portugal. I attend
+                    I'm <span id="age-counter">...</span> and currently living in Matosinhos, Portugal. I attend
                     <strong>CLIP, Oporto International School</strong>. Moving here from
                     the United States was a big adjustment — settling into a new country
                     and culture wasn't always easy, but the kindness of my fellow
@@ -101,5 +101,19 @@
             &copy; 2026 Leonard James Farris &mdash; CLIP Oporto International School
         </footer>
     </div>
+<script>
+  function updateAge() {
+    const now = new Date();
+    const birthYear = 2012;
+    const hasBirthdayOccurred = now.getMonth() > 2 || (now.getMonth() === 2 && now.getDate() >= 1);
+    const age = now.getFullYear() - birthYear - (hasBirthdayOccurred ? 0 : 1);
+    document.getElementById('age-counter').textContent = age + ' years old';
+
+    // schedule next update at March 1 of next applicable year
+    const nextBirthday = new Date(now.getFullYear() + (hasBirthdayOccurred ? 1 : 0), 2, 1);
+    setTimeout(() => { updateAge(); }, nextBirthday - now);
+  }
+  updateAge();
+</script>
 </body>
 </html>
