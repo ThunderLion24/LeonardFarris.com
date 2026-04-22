@@ -1,4 +1,97 @@
 <!DOCTYPE html>
-<html lang="English">
-    <link href="PsychologySS.css">
-</html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HomepageSS.css">
+    <title>Psychology | Leonard Farris</title>
+</head>
+<body>
+    <div class="lang-bar">
+        <select id="lang-select" onchange="setLanguage(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Psycho<span>logy</span></h1>
+            <p class="subtitle">Psychology papers and assignments</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <nav class="nav-grid">
+            <a class="nav-card" href="PsychPaper1.html">
+                <span class="icon">📄</span>
+                <h2>Confidence vs Discipline</h2>
+                <p>Read psychology paper 1.</p>
+            </a>
+
+            <a class="nav-card" href="PsychPaper2.html">
+                <span class="icon">📄</span>
+                <h2>The Issue with Democracy</h2>
+                <p>Read psychology paper 2.</p>
+            </a>
+
+            <a class="nav-card" href="PsychPaper3.html">
+                <span class="icon">📄</span>
+                <h2>Issue with Democracy</h2>
+                <p>Read psychology paper 3.</p>
+            </a>
+
+            <a class="nav-card" href="PsychPaper4.html">
+                <span class="icon">📄</span>
+                <h2>Equality and Freedom</h2>
+                <p>Read psychology paper 4.</p>
+            </a>
+        </nav>
+
+        <nav class="nav-grid" style="margin-top: 32px;">
+            <a class="nav-card" href="index.html">
+                <span class="icon">🏠</span>
+                <h2>Back to Home</h2>
+                <p>Return to the main page.</p>
+            </a>
+        </nav>
+
+        <footer>
+            &copy; 2026 Leonard James Farris &mdash; CLIP Oporto International School
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                subtitle: "Psychology papers and assignments",
+                p1Title: "Paper 1", p1Desc: "Read psychology paper 1.",
+                p2Title: "Paper 2", p2Desc: "Read psychology paper 2.",
+                p3Title: "Paper 3", p3Desc: "Read psychology paper 3.",
+                p4Title: "Paper 4", p4Desc: "Read psychology paper 4.",
+                homeTitle: "Back to Home", homeDesc: "Return to the main page."
+            },
+            pt: {
+                subtitle: "Trabalhos e tarefas de Psicologia",
+                p1Title: "Trabalho 1", p1Desc: "Ler trabalho de psicologia 1.",
+                p2Title: "Trabalho 2", p2Desc: "Ler trabalho de psicologia 2.",
+                p3Title: "Trabalho 3", p3Desc: "Ler trabalho de psicologia 3.",
+                p4Title: "Trabalho 4", p4Desc: "Ler trabalho de psicologia 4.",
+                homeTitle: "Voltar ao Início", homeDesc: "Regressar à página principal."
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            const cards = document.querySelectorAll('.nav-card');
+            const keys = ['p1', 'p2', 'p3', 'p4', 'home'];
+            cards.forEach((card, i) => {
+                card.querySelector('h2').textContent = t[keys[i] + 'Title'];
+                card.querySelector('p').textContent = t[keys[i] + 'Desc'];
+            });
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
