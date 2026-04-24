@@ -51,6 +51,12 @@
                 <h2>Reviews</h2>
                 <p>Leave a review or see what others think.</p>
             </a>
+
+            <a class="nav-card" href="Psychology.html">
+                <span class="icon">🧠</span>
+                <h2>Psychology</h2>
+                <p>Read my psychology papers and assignments.</p>
+            </a>
         </nav>
 
         <footer>
@@ -70,7 +76,9 @@
                 calcTitle: "Calculator",
                 calcDesc: "Try my calculator project.",
                 reviewsTitle: "Reviews",
-                reviewsDesc: "Leave a review or see what others think."
+                reviewsDesc: "Leave a review or see what others think.",
+                psychTitle: "Psychology",
+                psychDesc: "Read my psychology papers and assignments."
             },
             pt: {
                 subtitle: "Estudante na Escola Internacional CLIP Oporto",
@@ -82,7 +90,9 @@
                 calcTitle: "Calculadora",
                 calcDesc: "Experimente o meu projeto de calculadora.",
                 reviewsTitle: "Avaliações",
-                reviewsDesc: "Deixe uma avaliação ou veja o que os outros pensam."
+                reviewsDesc: "Deixe uma avaliação ou veja o que os outros pensam.",
+                psychTitle: "Psicologia",
+                psychDesc: "Leia os meus trabalhos e tarefas de psicologia."
             }
         };
 
@@ -91,7 +101,7 @@
             document.querySelector('.subtitle').textContent = t.subtitle;
             document.querySelector('.clock-label').textContent = t.clockLabel;
             const cards = document.querySelectorAll('.nav-card');
-            const keys = ['about', 'hobbies', 'calc', 'reviews'];
+            const keys = ['about', 'hobbies', 'calc', 'reviews', 'psych'];
             cards.forEach((card, i) => {
                 card.querySelector('h2').textContent = t[keys[i] + 'Title'];
                 card.querySelector('p').textContent = t[keys[i] + 'Desc'];
