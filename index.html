@@ -151,6 +151,7 @@
                 card.querySelector('h2').textContent = t[keys[i] + 'Title'];
                 card.querySelector('p').textContent = t[keys[i] + 'Desc'];
             });
+            localStorage.setItem('lang', lang);
             document.documentElement.lang = lang;
         }
 
@@ -164,6 +165,12 @@
         }
         updateClock();
         setInterval(updateClock, 1000);
+
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang && translations[savedLang]) {
+            document.getElementById('lang-select').value = savedLang;
+            setLanguage(savedLang);
+        }
     </script>
 </body>
 </html>

@@ -276,6 +276,7 @@
             card.querySelector('p').textContent = t[subjectKeys[i] + 'Desc'];
         });
 
+        localStorage.setItem('lang', lang);
         document.documentElement.lang = lang;
     }
 
@@ -289,6 +290,12 @@
         setTimeout(() => { updateAge(); }, nextBirthday - now);
     }
     updateAge();
+
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang && translations[savedLang]) {
+        document.getElementById('lang-select').value = savedLang;
+        setLanguage(savedLang);
+    }
 </script>
 </body>
 </html>

@@ -162,6 +162,7 @@
         document.querySelector('.review-link').textContent = t.reviewLink;
         document.querySelector('.section-title').innerHTML = t.sectionTitle;
         document.querySelector('.section-subtitle').textContent = t.sectionSubtitle;
+        localStorage.setItem('lang', lang);
         document.documentElement.lang = lang;
     }
 
@@ -223,6 +224,12 @@
             document.getElementById('reviews-container').innerHTML =
                 `<p class="status-msg">${t.loadError}</p>`;
         }
+    }
+
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang && translations[savedLang]) {
+        document.getElementById('lang-select').value = savedLang;
+        setLanguage(savedLang);
     }
 
     fetchReviews();
