@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="AboutMeSS.css">
     <title>About Me | Leonard Farris</title>
+    <style>
+        .lang-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: rgba(15, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .lang-bar select {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .lang-bar select:hover,
+        .lang-bar select:focus {
+            border-color: #e94560;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="lang-bar">
+        <select id="lang-select" onchange="setLanguage(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
     <div class="container">
         <div class="hero">
             <a class="back-link" href="index.html">← Back to Home</a>
@@ -32,9 +73,8 @@
                     I'm <span id="age-counter">...</span> and currently living in Matosinhos, Portugal. I attend
                     <strong>CLIP, Oporto International School</strong>. Moving here from
                     the United States was a big adjustment — settling into a new country
-                    and culture wasn't always easy, but the kindness of my fellow
-                    classmates made it possible for me to assimilate into Portuguese
-                    society with open arms.
+                    and culture wasn't very easy, but the kindness of my fellow
+                    classmates made it possible for me to feel welcome.
                 </p>
             </div>
 
@@ -43,8 +83,8 @@
                 <h3>Where I'm From</h3>
                 <p>
                     Originally from <strong>Marietta, Georgia</strong>, I moved to
-                    <strong>Porto, Portugal</strong> at age 14 — trading the American
-                    South for the Safety of the European Country, Europe.
+                    <strong>Porto, Portugal</strong> at age 14 — I traded my life in America for
+                    a better one in Portugal.
                 </p>
             </div>
 
@@ -85,11 +125,6 @@
                     <p>Fascinated by how the world works, from biology to physics and chemistry.</p>
                 </div>
                 <div class="subject-card">
-                    <span class="subject-icon">📖</span>
-                    <h3>English</h3>
-                    <p>Confident communicator with a love for reading, writing, and language.</p>
-                </div>
-                <div class="subject-card">
                     <span class="subject-icon">🏛️</span>
                     <h3>History</h3>
                     <p>Passionate about understanding the past and how it shapes our world today.</p>
@@ -102,18 +137,158 @@
         </footer>
     </div>
 <script>
-  function updateAge() {
-    const now = new Date();
-    const birthYear = 2012;
-    const hasBirthdayOccurred = now.getMonth() > 2 || (now.getMonth() === 2 && now.getDate() >= 1);
-    const age = now.getFullYear() - birthYear - (hasBirthdayOccurred ? 0 : 1);
-    document.getElementById('age-counter').textContent = age + ' years old';
+    const translations = {
+        en: {
+            backLink: "← Back to Home",
+            subtitle: "A little bit about who I am",
+            profileTagline: "Student — Porto, Portugal",
+            whoTitle: "Who I Am",
+            whoBody: `I'm <span id="age-counter">...</span> and currently living in Matosinhos, Portugal. I attend <strong>CLIP, Oporto International School</strong>. Moving here from the United States was a big adjustment — settling into a new country and culture wasn't very easy, but the kindness of my fellow classmates made it possible for me to feel welcome.`,
+            whereTitle: "Where I'm From",
+            whereBody: `Originally from <strong>Marietta, Georgia</strong>, I moved to <strong>Porto, Portugal</strong> at age 14 — I traded my life in America for a better one in Portugal.`,
+            schoolTitle: "My School",
+            schoolBody: `I study at <strong>CLIP, Oporto International School</strong>, an international school that offers a broad, globally-minded curriculum and a diverse community of students.`,
+            interestsTitle: "My Interests",
+            interestsBody: "Outside of school I have a wide range of hobbies and passions.",
+            hobbiesLink: "Explore my hobbies →",
+            academicTitle: "Academic <span>Strengths</span>",
+            academicSubtitle: "Subjects I excel at and enjoy the most",
+            mathTitle: "Mathematics", mathDesc: "Strong analytical and problem-solving skills, from algebra to geometry.",
+            scienceTitle: "Science", scienceDesc: "Fascinated by how the world works, from biology to physics and chemistry.",
+            historyTitle: "History", historyDesc: "Passionate about understanding the past and how it shapes our world today.",
+            yearsOld: "{age} years old"
+        },
+        pt: {
+            backLink: "← Voltar ao Início",
+            subtitle: "Um pouco sobre quem sou",
+            profileTagline: "Estudante — Porto, Portugal",
+            whoTitle: "Quem Sou Eu",
+            whoBody: `Tenho <span id="age-counter">...</span> e vivo atualmente em Matosinhos, Portugal. Frequento a <strong>CLIP, Oporto International School</strong>. Mudar-me dos Estados Unidos foi uma grande adaptação — integrar-me num novo país e cultura não foi muito fácil, mas a simpatia dos meus colegas tornou possível sentir-me bem-vindo.`,
+            whereTitle: "De Onde Sou",
+            whereBody: `Originalmente de <strong>Marietta, Geórgia</strong>, mudei-me para <strong>Porto, Portugal</strong> aos 14 anos — troquei a minha vida na América por uma melhor em Portugal.`,
+            schoolTitle: "A Minha Escola",
+            schoolBody: `Estudo na <strong>CLIP, Oporto International School</strong>, uma escola internacional que oferece um currículo abrangente e voltado para o mundo, com uma comunidade diversificada de estudantes.`,
+            interestsTitle: "Os Meus Interesses",
+            interestsBody: "Fora da escola tenho uma ampla gama de passatempos e paixões.",
+            hobbiesLink: "Explorar os meus passatempos →",
+            academicTitle: "Pontos Fortes <span>Académicos</span>",
+            academicSubtitle: "Disciplinas em que me destaco e mais gosto",
+            mathTitle: "Matemática", mathDesc: "Fortes competências analíticas e de resolução de problemas, desde álgebra à geometria.",
+            scienceTitle: "Ciências", scienceDesc: "Fascinado por como o mundo funciona, da biologia à física e química.",
+            historyTitle: "História", historyDesc: "Apaixonado por compreender o passado e como ele molda o nosso mundo hoje.",
+            yearsOld: "{age} anos"
+        },
+        de: {
+            backLink: "← Zurück zur Startseite",
+            subtitle: "Ein bisschen über mich",
+            profileTagline: "Schüler — Porto, Portugal",
+            whoTitle: "Wer ich bin",
+            whoBody: `Ich bin <span id="age-counter">...</span> und lebe derzeit in Matosinhos, Portugal. Ich besuche die <strong>CLIP, Oporto International School</strong>. Der Umzug aus den USA war eine große Umstellung — sich in einem neuen Land einzuleben war nicht leicht, aber die Freundlichkeit meiner Mitschüler ermöglichte es mir, mich willkommen zu fühlen.`,
+            whereTitle: "Woher ich komme",
+            whereBody: `Ursprünglich aus <strong>Marietta, Georgia</strong>, zog ich mit 14 Jahren nach <strong>Porto, Portugal</strong> um — ich tauschte mein Leben in Amerika gegen ein besseres in Portugal.`,
+            schoolTitle: "Meine Schule",
+            schoolBody: `Ich lerne an der <strong>CLIP, Oporto International School</strong>, einer internationalen Schule mit einem umfassenden, weltoffenen Lehrplan und einer vielfältigen Schülergemeinschaft.`,
+            interestsTitle: "Meine Interessen",
+            interestsBody: "Außerhalb der Schule habe ich ein breites Spektrum an Hobbys und Leidenschaften.",
+            hobbiesLink: "Meine Hobbys erkunden →",
+            academicTitle: "Akademische <span>Stärken</span>",
+            academicSubtitle: "Fächer, in denen ich mich auszeichne und am meisten genieße",
+            mathTitle: "Mathematik", mathDesc: "Starke analytische und problemlösende Fähigkeiten, von Algebra bis Geometrie.",
+            scienceTitle: "Naturwissenschaften", scienceDesc: "Fasziniert davon, wie die Welt funktioniert, von Biologie bis Physik und Chemie.",
+            historyTitle: "Geschichte", historyDesc: "Leidenschaft dafür, die Vergangenheit zu verstehen und wie sie unsere heutige Welt prägt.",
+            yearsOld: "{age} Jahre alt"
+        },
+        es: {
+            backLink: "← Volver al inicio",
+            subtitle: "Un poco sobre quién soy",
+            profileTagline: "Estudiante — Oporto, Portugal",
+            whoTitle: "Quién soy",
+            whoBody: `Tengo <span id="age-counter">...</span> y actualmente vivo en Matosinhos, Portugal. Estudio en el <strong>CLIP, Oporto International School</strong>. Mudarme desde los Estados Unidos fue un gran ajuste — adaptarme a un nuevo país y cultura no fue muy fácil, pero la amabilidad de mis compañeros de clase hizo posible que me sintiera bienvenido.`,
+            whereTitle: "De dónde soy",
+            whereBody: `Originalmente de <strong>Marietta, Georgia</strong>, me mudé a <strong>Oporto, Portugal</strong> a los 14 años — cambié mi vida en América por una mejor en Portugal.`,
+            schoolTitle: "Mi escuela",
+            schoolBody: `Estudio en el <strong>CLIP, Oporto International School</strong>, una escuela internacional que ofrece un currículo amplio y con perspectiva global, con una comunidad diversa de estudiantes.`,
+            interestsTitle: "Mis intereses",
+            interestsBody: "Fuera de la escuela tengo una amplia gama de pasatiempos y pasiones.",
+            hobbiesLink: "Explorar mis pasatiempos →",
+            academicTitle: "Fortalezas <span>Académicas</span>",
+            academicSubtitle: "Materias en las que destaco y más disfruto",
+            mathTitle: "Matemáticas", mathDesc: "Fuertes habilidades analíticas y de resolución de problemas, desde álgebra hasta geometría.",
+            scienceTitle: "Ciencias", scienceDesc: "Fascinado por cómo funciona el mundo, desde biología hasta física y química.",
+            historyTitle: "Historia", historyDesc: "Apasionado por entender el pasado y cómo moldea nuestro mundo actual.",
+            yearsOld: "{age} años"
+        },
+        fr: {
+            backLink: "← Retour à l'accueil",
+            subtitle: "Un peu qui je suis",
+            profileTagline: "Élève — Porto, Portugal",
+            whoTitle: "Qui je suis",
+            whoBody: `J'ai <span id="age-counter">...</span> et je vis actuellement à Matosinhos, au Portugal. Je fréquente le <strong>CLIP, Oporto International School</strong>. Déménager depuis les États-Unis a été un grand ajustement — s'installer dans un nouveau pays et une nouvelle culture n'a pas été très facile, mais la gentillesse de mes camarades de classe a rendu possible de me sentir bienvenu.`,
+            whereTitle: "D'où je viens",
+            whereBody: `Originaire de <strong>Marietta, Géorgie</strong>, j'ai déménagé à <strong>Porto, Portugal</strong> à 14 ans — j'ai échangé ma vie en Amérique contre une meilleure au Portugal.`,
+            schoolTitle: "Mon école",
+            schoolBody: `J'étudie au <strong>CLIP, Oporto International School</strong>, une école internationale qui propose un programme large et ouvert sur le monde, avec une communauté d'élèves diversifiée.`,
+            interestsTitle: "Mes intérêts",
+            interestsBody: "En dehors de l'école, j'ai un large éventail de loisirs et de passions.",
+            hobbiesLink: "Explorer mes loisirs →",
+            academicTitle: "Points Forts <span>Académiques</span>",
+            academicSubtitle: "Les matières dans lesquelles j'excelle et que j'apprécie le plus",
+            mathTitle: "Mathématiques", mathDesc: "Solides compétences analytiques et de résolution de problèmes, de l'algèbre à la géométrie.",
+            scienceTitle: "Sciences", scienceDesc: "Fasciné par le fonctionnement du monde, de la biologie à la physique et la chimie.",
+            historyTitle: "Histoire", historyDesc: "Passionné par la compréhension du passé et de la façon dont il façonne notre monde aujourd'hui.",
+            yearsOld: "{age} ans"
+        }
+    };
 
-    // schedule next update at March 1 of next applicable year
-    const nextBirthday = new Date(now.getFullYear() + (hasBirthdayOccurred ? 1 : 0), 2, 1);
-    setTimeout(() => { updateAge(); }, nextBirthday - now);
-  }
-  updateAge();
+    let currentLang = 'en';
+    let currentAge = null;
+
+    function updateAgeDisplay() {
+        if (currentAge !== null) {
+            const ageEl = document.getElementById('age-counter');
+            if (ageEl) ageEl.textContent = translations[currentLang].yearsOld.replace('{age}', currentAge);
+        }
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.querySelector('.back-link').textContent = t.backLink;
+        document.querySelector('.subtitle').textContent = t.subtitle;
+        document.querySelector('.profile-tagline').textContent = t.profileTagline;
+
+        const infoCards = document.querySelectorAll('.info-card');
+        const infoKeys = ['who', 'where', 'school', 'interests'];
+        infoCards.forEach((card, i) => {
+            card.querySelector('h3').textContent = t[infoKeys[i] + 'Title'];
+            card.querySelector('p').innerHTML = t[infoKeys[i] + 'Body'];
+        });
+        updateAgeDisplay();
+
+        document.querySelector('.hobbies-link').textContent = t.hobbiesLink;
+        document.querySelector('.section-title').innerHTML = t.academicTitle;
+        document.querySelector('.section-subtitle').textContent = t.academicSubtitle;
+
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const subjectKeys = ['math', 'science', 'history'];
+        subjectCards.forEach((card, i) => {
+            card.querySelector('h3').textContent = t[subjectKeys[i] + 'Title'];
+            card.querySelector('p').textContent = t[subjectKeys[i] + 'Desc'];
+        });
+
+        document.documentElement.lang = lang;
+    }
+
+    function updateAge() {
+        const now = new Date();
+        const birthYear = 2012;
+        const hasBirthdayOccurred = now.getMonth() > 2 || (now.getMonth() === 2 && now.getDate() >= 1);
+        currentAge = now.getFullYear() - birthYear - (hasBirthdayOccurred ? 0 : 1);
+        updateAgeDisplay();
+        const nextBirthday = new Date(now.getFullYear() + (hasBirthdayOccurred ? 1 : 0), 2, 1);
+        setTimeout(() => { updateAge(); }, nextBirthday - now);
+    }
+    updateAge();
 </script>
 </body>
 </html>

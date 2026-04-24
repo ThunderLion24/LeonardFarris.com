@@ -8,6 +8,36 @@
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
  
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
+    background: rgba(15, 20, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .lang-bar select {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #e0e0e0;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .lang-bar select:hover,
+  .lang-bar select:focus {
+    border-color: #a6e3a1;
+    outline: none;
+  }
  
   body {
     min-height: 100vh;
@@ -93,6 +123,15 @@
 </style>
 </head>
 <body>
+<div class="lang-bar">
+  <select id="lang-select" onchange="setLanguage(this.value)">
+    <option value="en">🌐 English</option>
+    <option value="pt">🇵🇹 Português</option>
+    <option value="de">🇩🇪 Deutsch</option>
+    <option value="es">🇪🇸 Español</option>
+    <option value="fr">🇫🇷 Français</option>
+  </select>
+</div>
 <div class="calc">
   <div class="display">
     <div class="display-history" id="history"></div>
@@ -103,6 +142,20 @@
 </div>
  
 <script>
+const calcTranslations = {
+  en: { says: 'Leonard GPT says ' },
+  pt: { says: 'Leonard GPT diz ' },
+  de: { says: 'Leonard GPT sagt ' },
+  es: { says: 'Leonard GPT dice ' },
+  fr: { says: 'Leonard GPT dit ' }
+};
+let calcLang = 'en';
+
+function setLanguage(lang) {
+  calcLang = lang;
+  document.documentElement.lang = lang;
+}
+
 const state = { expr: '', shift: false };
  
 const buttons = [
@@ -168,7 +221,7 @@ function evaluate() {
  
     histEl.textContent = state.expr + ' =';
     state.expr = String(result);
-    mainEl.textContent = 'Leonard GPT says ' + state.expr;
+    mainEl.textContent = calcTranslations[calcLang].says + state.expr;
   } catch {
     mainEl.textContent = 'Error';
     state.expr = '';

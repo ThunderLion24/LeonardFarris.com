@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="PsychPaperSS.css">
     <title>Confidence vs Discipline | Leonard Farris</title>
+    <style>
+        .lang-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: rgba(15, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .lang-bar select {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .lang-bar select:hover,
+        .lang-bar select:focus {
+            border-color: #e94560;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="lang-bar">
+        <select id="lang-select" onchange="setLanguage(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
     <div class="top-bar">
         <a class="back-link" href="Philosophy.html">&#8592; Back to Philosophy</a>
     </div>
@@ -27,12 +68,63 @@
         <div class="divider"></div>
 
         <div class="content">
-            <p>This psychology paper is available in the linked Word document above. Click <strong>Open Document</strong> to read the full paper on SharePoint.</p>
+            <p>This philosophy paper is available in the linked Word document above. Click <strong>Open Document</strong> to read the full paper on SharePoint.</p>
         </div>
     </article>
 
     <footer>
         &copy; 2026 Leonard James Farris &mdash; CLIP Oporto International School
     </footer>
+
+    <script>
+        const translations = {
+            en: {
+                backLink: "← Back to Philosophy",
+                badge: "Philosophy",
+                paperBadge: "Paper 1",
+                openBtn: "📄 Open Document",
+                contentText: `This philosophy paper is available in the linked Word document above. Click <strong>Open Document</strong> to read the full paper on SharePoint.`
+            },
+            pt: {
+                backLink: "← Voltar à Filosofia",
+                badge: "Filosofia",
+                paperBadge: "Trabalho 1",
+                openBtn: "📄 Abrir Documento",
+                contentText: `Este trabalho de filosofia está disponível no documento Word acima. Clique em <strong>Abrir Documento</strong> para ler o trabalho completo no SharePoint.`
+            },
+            de: {
+                backLink: "← Zurück zur Philosophie",
+                badge: "Philosophie",
+                paperBadge: "Aufsatz 1",
+                openBtn: "📄 Dokument öffnen",
+                contentText: `Dieser Philosophieaufsatz ist im verlinkten Word-Dokument oben verfügbar. Klicke auf <strong>Dokument öffnen</strong>, um den vollständigen Aufsatz auf SharePoint zu lesen.`
+            },
+            es: {
+                backLink: "← Volver a Filosofía",
+                badge: "Filosofía",
+                paperBadge: "Ensayo 1",
+                openBtn: "📄 Abrir Documento",
+                contentText: `Este ensayo de filosofía está disponible en el documento Word vinculado arriba. Haz clic en <strong>Abrir Documento</strong> para leer el ensayo completo en SharePoint.`
+            },
+            fr: {
+                backLink: "← Retour à Philosophie",
+                badge: "Philosophie",
+                paperBadge: "Travail 1",
+                openBtn: "📄 Ouvrir le Document",
+                contentText: `Ce travail de philosophie est disponible dans le document Word lié ci-dessus. Cliquez sur <strong>Ouvrir le Document</strong> pour lire le travail complet sur SharePoint.`
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            document.querySelector('.back-link').textContent = t.backLink;
+            const badges = document.querySelectorAll('.badge');
+            badges[0].textContent = t.badge;
+            badges[1].textContent = t.paperBadge;
+            document.querySelector('.open-btn').textContent = t.openBtn;
+            document.querySelector('.content p').innerHTML = t.contentText;
+            document.documentElement.lang = lang;
+        }
+    </script>
 </body>
 </html>

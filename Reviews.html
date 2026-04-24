@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ReviewsSS.css">
     <title>Reviews | Leonard Farris</title>
+    <style>
+        .lang-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: rgba(15, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .lang-bar select {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .lang-bar select:hover,
+        .lang-bar select:focus {
+            border-color: #e94560;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="lang-bar">
+        <select id="lang-select" onchange="setLanguage(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
     <div class="container">
         <div class="hero">
             <a class="back-link" href="index.html">← Back to Home</a>
@@ -47,10 +88,85 @@
     </div>
 
 <script>
-  
+    const translations = {
+        en: {
+            backLink: "← Back to Home",
+            heading: `Leave a <span>Review</span>`,
+            subtitle: "Share your thoughts — I'd love to hear from you",
+            reviewLink: "Leave a Review",
+            sectionTitle: `What People <span>Say</span>`,
+            sectionSubtitle: "Reviews update automatically every 2 minutes",
+            loading: "Loading reviews…",
+            noReviews: "No reviews yet — be the first!",
+            lastUpdated: "Last updated: ",
+            loadError: "Could not load reviews. Check your CSV URL."
+        },
+        pt: {
+            backLink: "← Voltar ao Início",
+            heading: `Deixar uma <span>Avaliação</span>`,
+            subtitle: "Partilhe a sua opinião — adorava ouvir de si",
+            reviewLink: "Deixar uma Avaliação",
+            sectionTitle: `O Que as Pessoas <span>Dizem</span>`,
+            sectionSubtitle: "As avaliações atualizam automaticamente a cada 2 minutos",
+            loading: "A carregar avaliações…",
+            noReviews: "Sem avaliações ainda — seja o primeiro!",
+            lastUpdated: "Última atualização: ",
+            loadError: "Não foi possível carregar as avaliações."
+        },
+        de: {
+            backLink: "← Zurück zur Startseite",
+            heading: `Eine <span>Bewertung</span> hinterlassen`,
+            subtitle: "Teile deine Gedanken — ich würde gerne von dir hören",
+            reviewLink: "Bewertung hinterlassen",
+            sectionTitle: `Was die Leute <span>sagen</span>`,
+            sectionSubtitle: "Bewertungen werden automatisch alle 2 Minuten aktualisiert",
+            loading: "Bewertungen werden geladen…",
+            noReviews: "Noch keine Bewertungen — sei der Erste!",
+            lastUpdated: "Zuletzt aktualisiert: ",
+            loadError: "Bewertungen konnten nicht geladen werden."
+        },
+        es: {
+            backLink: "← Volver al inicio",
+            heading: `Dejar una <span>Reseña</span>`,
+            subtitle: "Comparte tus pensamientos — me encantaría saber de ti",
+            reviewLink: "Dejar una Reseña",
+            sectionTitle: `Lo que la Gente <span>Dice</span>`,
+            sectionSubtitle: "Las reseñas se actualizan automáticamente cada 2 minutos",
+            loading: "Cargando reseñas…",
+            noReviews: "Sin reseñas aún — ¡sé el primero!",
+            lastUpdated: "Última actualización: ",
+            loadError: "No se pudieron cargar las reseñas."
+        },
+        fr: {
+            backLink: "← Retour à l'accueil",
+            heading: `Laisser un <span>Avis</span>`,
+            subtitle: "Partagez vos pensées — j'adorerais avoir de vos nouvelles",
+            reviewLink: "Laisser un Avis",
+            sectionTitle: `Ce que les gens <span>disent</span>`,
+            sectionSubtitle: "Les avis se mettent à jour automatiquement toutes les 2 minutes",
+            loading: "Chargement des avis…",
+            noReviews: "Aucun avis pour l'instant — soyez le premier !",
+            lastUpdated: "Dernière mise à jour : ",
+            loadError: "Impossible de charger les avis."
+        }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.querySelector('.back-link').textContent = t.backLink;
+        document.querySelector('h1').innerHTML = t.heading;
+        document.querySelector('.subtitle').textContent = t.subtitle;
+        document.querySelector('.review-link').textContent = t.reviewLink;
+        document.querySelector('.section-title').innerHTML = t.sectionTitle;
+        document.querySelector('.section-subtitle').textContent = t.sectionSubtitle;
+        document.documentElement.lang = lang;
+    }
+
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT0TOhSKfMxHA_BhsqXrO2fM4e0HcTVAy5RoHH1Rr3vZ6oaXYHvUUqMMlmX5Iup2UMCZAG0TmTdakok/pub?output=csv&gid=669190595';
 
-    
     const COL_TIMESTAMP = 0;
     const COL_NAME      = 1;
     const COL_RATING    = 2;
@@ -59,7 +175,7 @@
     function parseCSV(text) {
         const rows = [];
         const lines = text.trim().split('\n');
-        for (let i = 1; i < lines.length; i++) { // skip header row
+        for (let i = 1; i < lines.length; i++) {
             const cols = lines[i].match(/(".*?"|[^,]+)(?=,|$)/g) || [];
             rows.push(cols.map(c => c.replace(/^"|"$/g, '').trim()));
         }
@@ -73,8 +189,9 @@
 
     function renderReviews(rows) {
         const container = document.getElementById('reviews-container');
+        const t = translations[currentLang];
         if (!rows.length) {
-            container.innerHTML = '<p class="status-msg">No reviews yet — be the first!</p>';
+            container.innerHTML = `<p class="status-msg">${t.noReviews}</p>`;
             return;
         }
         container.innerHTML = rows.slice().reverse().map(row => `
@@ -95,26 +212,21 @@
     }
 
     async function fetchReviews() {
-        if (CSV_URL === 'PASTE_YOUR_PUBLISHED_SHEET_CSV_URL_HERE') {
-            document.getElementById('reviews-container').innerHTML =
-                '<p class="status-msg">Set up your Google Sheet CSV URL to display reviews.</p>';
-            return;
-        }
+        const t = translations[currentLang];
         try {
-            // Cache-busting param so the browser doesn't serve a stale response
             const res = await fetch(CSV_URL + '&cachebust=' + Date.now());
             const text = await res.text();
             renderReviews(parseCSV(text));
             document.getElementById('last-updated').textContent =
-                'Last updated: ' + new Date().toLocaleTimeString();
+                t.lastUpdated + new Date().toLocaleTimeString();
         } catch {
             document.getElementById('reviews-container').innerHTML =
-                '<p class="status-msg">Could not load reviews. Check your CSV URL.</p>';
+                `<p class="status-msg">${t.loadError}</p>`;
         }
     }
 
     fetchReviews();
-    setInterval(fetchReviews, 2 * 60 * 1000); // refresh every 2 minutes
+    setInterval(fetchReviews, 2 * 60 * 1000);
 </script>
 </body>
 </html>

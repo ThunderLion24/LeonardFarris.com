@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonard Farris — Hobbies</title>
     <link rel="stylesheet" href="HobbiesSS.css">
+    <style>
+        .lang-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 20px;
+            background: rgba(15, 20, 40, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .lang-bar select {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .lang-bar select:hover,
+        .lang-bar select:focus {
+            border-color: #e94560;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="lang-bar">
+        <select id="lang-select" onchange="setLanguage(this.value)">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
     <div class="container">
         <header class="hero">
             <a href="index.html" class="back-link">&#8592; Back to Home</a>
@@ -68,5 +109,93 @@
             <p>&copy; 2026 Leonard Farris</p>
         </footer>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                backLink: "← Back to Home",
+                subtitle: "Things I Love to Do",
+                gamesTitle: "Video Games",
+                gamesDesc: "Gaming is one of my biggest passions. I spend a lot of time across a range of titles — whether it's surviving in Minecraft, fighting for Super Earth in Helldivers, or competing in Counter-Strike. There's always a new challenge waiting.",
+                codingTitle: "Coding",
+                codingDesc: "I enjoy building things from scratch — this very page is proof of that. Coding lets me solve problems creatively and turn ideas into something real and interactive.",
+                friendsTitle: "Hanging with Friends",
+                friendsDesc: "Nothing beats a good conversation. Whether it's catching up, debating random topics, or just vibing — spending time with my friends is something I genuinely look forward to.",
+                youtubeTitle: "Watching YouTube",
+                youtubeDesc: "YouTube is my go-to for entertainment and learning. I mostly gravitate toward Minecraft content — there's something endlessly entertaining about the community and the creators that make videos in that space.",
+                animeTitle: "Anime",
+                animeDesc: "Anime has great storytelling, unique art styles, and worlds you can't find anywhere else. It's one of my favorite ways to unwind and get absorbed in a compelling story."
+            },
+            pt: {
+                backLink: "← Voltar ao Início",
+                subtitle: "Coisas que Adoro Fazer",
+                gamesTitle: "Videojogos",
+                gamesDesc: "Os jogos são uma das minhas maiores paixões. Passo muito tempo em vários títulos — seja a sobreviver no Minecraft, a lutar pela Super Terra no Helldivers ou a competir no Counter-Strike. Há sempre um novo desafio à espera.",
+                codingTitle: "Programação",
+                codingDesc: "Gosto de construir coisas do zero — esta própria página é prova disso. Programar permite-me resolver problemas de forma criativa e transformar ideias em algo real e interativo.",
+                friendsTitle: "Conviver com Amigos",
+                friendsDesc: "Nada supera uma boa conversa. Seja para colocar a conversa em dia, debater temas aleatórios ou simplesmente descontrair — passar tempo com os meus amigos é algo que realmente valorizo.",
+                youtubeTitle: "Ver YouTube",
+                youtubeDesc: "O YouTube é o meu principal recurso para entretenimento e aprendizagem. Inclino-me sobretudo para conteúdo de Minecraft — há algo inesgotavelmente divertido na comunidade e nos criadores que fazem vídeos nesse espaço.",
+                animeTitle: "Anime",
+                animeDesc: "O anime tem ótimas narrativas, estilos artísticos únicos e mundos que não se encontram em mais lado nenhum. É uma das minhas formas favoritas de relaxar e mergulhar numa história cativante."
+            },
+            de: {
+                backLink: "← Zurück zur Startseite",
+                subtitle: "Dinge, die ich liebe",
+                gamesTitle: "Videospiele",
+                gamesDesc: "Spielen ist eine meiner größten Leidenschaften. Ich verbringe viel Zeit mit verschiedenen Titeln — ob ich in Minecraft überlebe, für die Super-Erde in Helldivers kämpfe oder in Counter-Strike antrete. Es wartet immer eine neue Herausforderung.",
+                codingTitle: "Programmieren",
+                codingDesc: "Ich baue gerne Dinge von Grund auf — diese Seite ist ein Beweis dafür. Programmieren ermöglicht es mir, Probleme kreativ zu lösen und Ideen in etwas Reales und Interaktives zu verwandeln.",
+                friendsTitle: "Zeit mit Freunden",
+                friendsDesc: "Nichts geht über ein gutes Gespräch. Ob es darum geht, aufzuholen, zufällige Themen zu diskutieren oder einfach abzuhängen — Zeit mit meinen Freunden zu verbringen ist etwas, worauf ich mich wirklich freue.",
+                youtubeTitle: "YouTube schauen",
+                youtubeDesc: "YouTube ist meine erste Anlaufstelle für Unterhaltung und Lernen. Ich neige hauptsächlich zu Minecraft-Inhalten — an der Community und den Creators, die Videos in diesem Bereich machen, ist etwas endlos Unterhaltsames.",
+                animeTitle: "Anime",
+                animeDesc: "Anime hat großartiges Storytelling, einzigartige Kunststile und Welten, die man nirgendwo sonst findet. Es ist eine meiner liebsten Methoden zum Entspannen und in eine fesselnde Geschichte einzutauchen."
+            },
+            es: {
+                backLink: "← Volver al inicio",
+                subtitle: "Cosas que me Encanta Hacer",
+                gamesTitle: "Videojuegos",
+                gamesDesc: "Los videojuegos son una de mis mayores pasiones. Paso mucho tiempo en una variedad de títulos — ya sea sobreviviendo en Minecraft, luchando por la Supertiera en Helldivers o compitiendo en Counter-Strike. Siempre hay un nuevo desafío esperando.",
+                codingTitle: "Programación",
+                codingDesc: "Me gusta construir cosas desde cero — esta misma página es prueba de ello. Programar me permite resolver problemas de forma creativa y convertir ideas en algo real e interactivo.",
+                friendsTitle: "Salir con Amigos",
+                friendsDesc: "Nada supera una buena conversación. Ya sea para ponerse al día, debatir temas aleatorios o simplemente pasar el rato — pasar tiempo con mis amigos es algo que realmente espero con ilusión.",
+                youtubeTitle: "Ver YouTube",
+                youtubeDesc: "YouTube es mi principal fuente de entretenimiento y aprendizaje. Me inclino principalmente por el contenido de Minecraft — hay algo infinitamente entretenido en la comunidad y los creadores que hacen videos en ese espacio.",
+                animeTitle: "Anime",
+                animeDesc: "El anime tiene una gran narrativa, estilos artísticos únicos y mundos que no puedes encontrar en ningún otro lugar. Es una de mis formas favoritas de relajarme y absorberme en una historia cautivadora."
+            },
+            fr: {
+                backLink: "← Retour à l'accueil",
+                subtitle: "Choses que j'adore faire",
+                gamesTitle: "Jeux vidéo",
+                gamesDesc: "Le jeu est l'une de mes plus grandes passions. Je passe beaucoup de temps sur une gamme de titres — que ce soit à survivre dans Minecraft, à combattre pour la Super Terre dans Helldivers, ou à concourir dans Counter-Strike. Il y a toujours un nouveau défi qui attend.",
+                codingTitle: "Programmation",
+                codingDesc: "J'aime construire des choses à partir de zéro — cette même page en est la preuve. Coder me permet de résoudre des problèmes de façon créative et de transformer des idées en quelque chose de réel et d'interactif.",
+                friendsTitle: "Sortir avec des amis",
+                friendsDesc: "Rien ne vaut une bonne conversation. Que ce soit pour se retrouver, débattre de sujets aléatoires, ou simplement passer du temps ensemble — passer du temps avec mes amis est quelque chose que j'attends vraiment avec impatience.",
+                youtubeTitle: "Regarder YouTube",
+                youtubeDesc: "YouTube est ma source principale de divertissement et d'apprentissage. Je m'oriente principalement vers le contenu Minecraft — il y a quelque chose d'infiniment divertissant dans la communauté et les créateurs qui font des vidéos dans cet espace.",
+                animeTitle: "Anime",
+                animeDesc: "L'anime a une excellente narration, des styles artistiques uniques et des mondes qu'on ne trouve nulle part ailleurs. C'est l'une de mes façons préférées de me détendre et de m'immerger dans une histoire captivante."
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            document.querySelector('.back-link').textContent = t.backLink;
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            const cards = document.querySelectorAll('.hobby-card');
+            const keys = ['games', 'coding', 'friends', 'youtube', 'anime'];
+            cards.forEach((card, i) => {
+                card.querySelector('h2').textContent = t[keys[i] + 'Title'];
+                card.querySelector('p').textContent = t[keys[i] + 'Desc'];
+            });
+            document.documentElement.lang = lang;
+        }
+    </script>
 </body>
 </html>
