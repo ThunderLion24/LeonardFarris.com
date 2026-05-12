@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(135deg, #051a0f 0%, #0a2218 50%, #0a2f1e 100%);
     min-height: 100vh;
     color: #e0e0e0;
 }
@@ -17,7 +17,6 @@ body {
     padding: 40px 20px;
 }
 
-/* Hero */
 .hero {
     text-align: center;
     padding: 50px 0 30px;
@@ -34,7 +33,7 @@ body {
 }
 
 .back-link:hover {
-    color: #e94560;
+    color: #10b981;
 }
 
 .hero h1 {
@@ -46,7 +45,7 @@ body {
 }
 
 .hero h1 span {
-    color: #e94560;
+    color: #10b981;
 }
 
 .hero .subtitle {
@@ -54,16 +53,14 @@ body {
     color: #a0aec0;
 }
 
-/* Divider */
 .divider {
     width: 60px;
     height: 3px;
-    background: #e94560;
+    background: #10b981;
     margin: 36px auto;
     border-radius: 2px;
 }
 
-/* Hobby Grid */
 .hobby-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -80,8 +77,8 @@ body {
 
 .hobby-card:hover {
     transform: translateY(-5px);
-    border-color: #e94560;
-    background: rgba(233, 69, 96, 0.08);
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
 }
 
 .hobby-card .icon {
@@ -103,7 +100,6 @@ body {
     line-height: 1.65;
 }
 
-/* Tags */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -112,9 +108,9 @@ body {
 }
 
 .tag {
-    background: rgba(233, 69, 96, 0.15);
-    border: 1px solid rgba(233, 69, 96, 0.4);
-    color: #e94560;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #10b981;
     font-size: 0.78rem;
     font-weight: 600;
     padding: 4px 10px;
@@ -122,7 +118,6 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* Footer */
 footer {
     text-align: center;
     margin-top: 60px;

@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background: linear-gradient(135deg, #051a1a 0%, #0a2233 50%, #0a2f2b 100%);
     min-height: 100vh;
     color: #e0e0e0;
 }
@@ -32,7 +32,9 @@ body {
     transition: color 0.2s;
 }
 
-.back-link:hover { color: #e94560; }
+.back-link:hover {
+    color: #14b8a6;
+}
 
 .hero h1 {
     font-size: 3rem;
@@ -42,7 +44,7 @@ body {
     margin-bottom: 10px;
 }
 
-.hero h1 span { color: #e94560; }
+.hero h1 span { color: #14b8a6; }
 
 .hero .subtitle {
     font-size: 1.1rem;
@@ -53,8 +55,8 @@ body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 28px;
-    background: #e94560;
-    color: #ffffff;
+    background: #14b8a6;
+    color: #051a1a;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 700;
@@ -71,7 +73,7 @@ body {
 .divider {
     width: 60px;
     height: 3px;
-    background: #e94560;
+    background: #14b8a6;
     margin: 36px auto;
     border-radius: 2px;
 }
@@ -84,7 +86,7 @@ body {
     text-align: center;
 }
 
-.section-title span { color: #e94560; }
+.section-title span { color: #14b8a6; }
 
 .section-subtitle {
     font-size: 1rem;
@@ -93,10 +95,9 @@ body {
     text-align: center;
 }
 
-/* Form embed */
 .form-wrapper {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(233, 69, 96, 0.3);
+    border: 1px solid rgba(20, 184, 166, 0.3);
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 48px;
@@ -108,7 +109,6 @@ body {
     display: block;
 }
 
-/* Reviews list */
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -125,8 +125,8 @@ body {
 
 .review-card:hover {
     transform: translateY(-4px);
-    border-color: #e94560;
-    background: rgba(233, 69, 96, 0.08);
+    border-color: #14b8a6;
+    background: rgba(20, 184, 166, 0.08);
 }
 
 .review-header {
