@@ -1,0 +1,58 @@
+name:  Hugo
+
+on:
+  pull_request:
+  push:
+    branches: ['main']
+  workflow_dispatch: {}
+  # Added to manually trigger GH action without pushing
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      # - name: Setup Hugo
+      #   uses: peaceiris/actions-hugo@v3
+      #   with:
+      #     hugo-version: '0.156.0'
+      #     extended: true
+
+      # - name: build site
+      #   run: hugo --minify
+      
+      # Only deploy on push to main or manual
+      - name: Configure AWS credentials (OIDC)
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync site to S3
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          aws s3 sync . "s3://${{ vars.S3_BUCKET_NAME }}/" --delete
+
+      - name: Invalidate CloudFront
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths "/*"
+
+      # AWS auth test
+      # - name: Verify AWS identity
+      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      #   run: aws sts get-caller-identity
