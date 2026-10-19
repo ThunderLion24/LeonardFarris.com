@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #050f1f 0%, #0a1a33 50%, #0a2547 100%);
+    min-height: 100vh;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 0 30px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #3b82f6;
+}
+
+.hero h1,
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.hero h1 span,
+h1 span {
+    color: #3b82f6;
+}
+
+.hero .subtitle {
+    font-size: 1.1rem;
+    color: #a0aec0;
+}
+
+p {
+    font-size: 1rem;
+    color: #a0aec0;
+    line-height: 1.65;
+}
+
+.divider {
+    width: 60px;
+    height: 3px;
+    background: #3b82f6;
+    margin: 36px auto;
+    border-radius: 2px;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.section-title span {
+    color: #3b82f6;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #a0aec0;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.card .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.92rem;
+    color: #a0aec0;
+    line-height: 1.65;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tag {
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    color: #3b82f6;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-bottom: 30px;
+    color: #4a5568;
+    font-size: 0.85rem;
+}
