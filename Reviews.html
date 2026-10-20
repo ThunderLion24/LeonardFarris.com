@@ -5,40 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ReviewsSS.css">
     <title>Reviews | Leonard Farris</title>
-    <style>
-        .lang-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px 20px;
-            background: rgba(15, 20, 40, 0.85);
-            backdrop-filter: blur(8px);
-            border-bottom:w1px solid rgba(255, 255, 255, 0.08);
-        }
-        .lang-bar select {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            color: #e0e0e0;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-family: inherit;
-            transition: border-color 0.2s;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-        .lang-bar select:hover,
-        .lang-bar select:focus {
-            border-color: #e94560;
-            outline: none;
-        }
-    </style>
 </head>
 <body>
-    <div class="lang-bar">
+    <div class="container">
+        <div class="hero">
+            <h1>Leave a <span>Review</span></h1>
+            <p class="subtitle">Share your thoughts — I'd love to hear from you</p>
+            <a class="review-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeJMVVMT9PON-NM4TyTQ3UxHVa7710G9TkLTvO3vIDWZe_FeA/viewform?usp=publish-editor" target="_blank">Leave a Review</a>
+        </div>
+    </div>
+
+    <nav class="home-bar">
+        <div class="home-links">
+            <a href="index.html" data-nav="about">About Me</a>
+            <a href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a class="current" href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a href="papers.html" data-nav="papers">Papers</a>
+            <a href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
         <select id="lang-select" onchange="setLanguage(this.value)">
             <option value="en">🌐 English</option>
             <option value="pt">🇵🇹 Português</option>
@@ -48,17 +33,9 @@
             <option value="ru">🇷🇺 Русский</option>
             <option value="ja">🇯🇵 日本語</option>
         </select>
-    </div>
+    </nav>
 
     <div class="container">
-        <div class="hero">
-            <a class="back-link" href="index.html">← Back to Home</a>
-            <h1>Leave a <span>Review</span></h1>
-            <p class="subtitle">Share your thoughts — I'd love to hear from you</p>
-            <a class="review-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeJMVVMT9PON-NM4TyTQ3UxHVa7710G9TkLTvO3vIDWZe_FeA/viewform?usp=publish-editor" target="_blank">Leave a Review</a>
-        </div>
-
-        <div class="divider"></div>
 
 
         <div class="form-wrapper">
@@ -92,7 +69,6 @@
 <script>
     const translations = {
         en: {
-            backLink: "← Back to Home",
             heading: `Leave a <span>Review</span>`,
             subtitle: "Share your thoughts — I'd love to hear from you",
             reviewLink: "Leave a Review",
@@ -104,7 +80,6 @@
             loadError: "Could not load reviews. Check your CSV URL."
         },
         pt: {
-            backLink: "← Voltar ao Início",
             heading: `Deixar uma <span>Avaliação</span>`,
             subtitle: "Partilhe a sua opinião — adorava ouvir de si",
             reviewLink: "Deixar uma Avaliação",
@@ -116,7 +91,6 @@
             loadError: "Não foi possível carregar as avaliações."
         },
         de: {
-            backLink: "← Zurück zur Startseite",
             heading: `Eine <span>Bewertung</span> hinterlassen`,
             subtitle: "Teile deine Gedanken — ich würde gerne von dir hören",
             reviewLink: "Bewertung hinterlassen",
@@ -128,7 +102,6 @@
             loadError: "Bewertungen konnten nicht geladen werden."
         },
         es: {
-            backLink: "← Volver al inicio",
             heading: `Dejar una <span>Reseña</span>`,
             subtitle: "Comparte tus pensamientos — me encantaría saber de ti",
             reviewLink: "Dejar una Reseña",
@@ -140,7 +113,6 @@
             loadError: "No se pudieron cargar las reseñas."
         },
         fr: {
-            backLink: "← Retour à l'accueil",
             heading: `Laisser un <span>Avis</span>`,
             subtitle: "Partagez vos pensées — j'adorerais avoir de vos nouvelles",
             reviewLink: "Laisser un Avis",
@@ -152,7 +124,6 @@
             loadError: "Impossible de charger les avis."
         },
         ru: {
-            backLink: "← На главную",
             heading: `Оставить <span>Отзыв</span>`,
             subtitle: "Поделитесь своими мыслями — я рад вас услышать",
             reviewLink: "Оставить отзыв",
@@ -164,7 +135,6 @@
             loadError: "Не удалось загрузить отзывы."
         },
         ja: {
-            backLink: "← ホームに戻る",
             heading: `<span>レビュー</span>を残す`,
             subtitle: "あなたの考えを共有してください — ぜひ聞かせてください",
             reviewLink: "レビューを残す",
@@ -182,7 +152,6 @@
     function setLanguage(lang) {
         currentLang = lang;
         const t = translations[lang];
-        document.querySelector('.back-link').textContent = t.backLink;
         document.querySelector('h1').innerHTML = t.heading;
         document.querySelector('.subtitle').textContent = t.subtitle;
         document.querySelector('.review-link').textContent = t.reviewLink;
@@ -261,5 +230,6 @@
     fetchReviews();
     setInterval(fetchReviews, 2 * 60 * 1000);
 </script>
+<script src="homebar.js"></script>
 </body>
 </html>

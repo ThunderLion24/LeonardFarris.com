@@ -5,40 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonard Farris — Hobbies</title>
     <link rel="stylesheet" href="HobbiesSS.css">
-    <style>
-        .lang-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px 20px;
-            background: rgba(15, 20, 40, 0.85);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .lang-bar select {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            color: #e0e0e0;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-family: inherit;
-            transition: border-color 0.2s;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-        .lang-bar select:hover,
-        .lang-bar select:focus {
-            border-color: #e94560;
-            outline: none;
-        }
-    </style>
 </head>
 <body>
-    <div class="lang-bar">
+    <div class="container">
+        <header class="hero">
+            <h1>Leonard <span>Farris</span></h1>
+            <p class="subtitle">Things I Love to Do</p>
+        </header>
+    </div>
+
+    <nav class="home-bar">
+        <div class="home-links">
+            <a href="index.html" data-nav="about">About Me</a>
+            <a class="current" href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a href="papers.html" data-nav="papers">Papers</a>
+            <a href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
         <select id="lang-select" onchange="setLanguage(this.value)">
             <option value="en">🌐 English</option>
             <option value="pt">🇵🇹 Português</option>
@@ -48,16 +32,9 @@
             <option value="ru">🇷🇺 Русский</option>
             <option value="ja">🇯🇵 日本語</option>
         </select>
-    </div>
+    </nav>
 
     <div class="container">
-        <header class="hero">
-            <a href="index.html" class="back-link">&#8592; Back to Home</a>
-            <h1>Leonard <span>Farris</span></h1>
-            <p class="subtitle">Things I Love to Do</p>
-        </header>
-
-        <div class="divider"></div>
 
         <section class="hobby-grid">
 
@@ -116,7 +93,6 @@
     <script>
         const translations = {
             en: {
-                backLink: "← Back to Home",
                 subtitle: "Things I Love to Do",
                 gamesTitle: "Video Games",
                 gamesDesc: "Gaming is one of my biggest passions. I spend a lot of time across a range of titles. Minecraft's massive open world and creative freedom allows me to play endlessly. Helldivers is fun because of its constant updates. The fight for super-earth shall never stop. Counter-strike's competitive scene is extremely fun to play in.",
@@ -130,7 +106,6 @@
                 animeDesc: "Anime has great storytelling, unique art styles, and worlds you can't find anywhere else. Anime is a type of storytelling like no other."
             },
             pt: {
-                backLink: "← Voltar ao Início",
                 subtitle: "Coisas que Adoro Fazer",
                 gamesTitle: "Videojogos",
                 gamesDesc: "Os jogos são uma das minhas maiores paixões. Passo muito tempo em vários títulos. O mundo aberto e a liberdade criativa do Minecraft permitem-me jogar infinitamente. O Helldivers é divertido pelas suas atualizações constantes. A luta pela Super Terra nunca vai parar. A cena competitiva do Counter-Strike é extremamente divertida.",
@@ -144,7 +119,6 @@
                 animeDesc: "O anime tem ótimas narrativas, estilos artísticos únicos e mundos que não se encontram em mais lado nenhum. O anime é um tipo de narrativa como nenhum outro."
             },
             de: {
-                backLink: "← Zurück zur Startseite",
                 subtitle: "Dinge, die ich liebe",
                 gamesTitle: "Videospiele",
                 gamesDesc: "Spielen ist eine meiner größten Leidenschaften. Ich verbringe viel Zeit mit verschiedenen Titeln. Die riesige offene Welt und kreative Freiheit von Minecraft ermöglicht es mir, endlos zu spielen. Helldivers macht durch seine ständigen Updates Spaß. Der Kampf für die Supererde wird nie aufhören. Die kompetitive Szene von Counter-Strike macht extrem viel Spaß.",
@@ -158,7 +132,6 @@
                 animeDesc: "Anime hat großartiges Storytelling, einzigartige Kunststile und Welten, die man nirgendwo sonst findet. Anime ist eine Art des Geschichtenerzählens wie keine andere."
             },
             es: {
-                backLink: "← Volver al inicio",
                 subtitle: "Cosas que me Encanta Hacer",
                 gamesTitle: "Videojuegos",
                 gamesDesc: "Los videojuegos son una de mis mayores pasiones. Paso mucho tiempo en una variedad de títulos. El enorme mundo abierto y la libertad creativa de Minecraft me permiten jugar sin fin. Helldivers es divertido por sus constantes actualizaciones. La lucha por la Supertiera nunca se detendrá. La escena competitiva de Counter-Strike es extremadamente divertida.",
@@ -172,7 +145,6 @@
                 animeDesc: "El anime tiene una gran narrativa, estilos artísticos únicos y mundos que no puedes encontrar en ningún otro lugar. El anime es un tipo de narrativa como ningún otro."
             },
             fr: {
-                backLink: "← Retour à l'accueil",
                 subtitle: "Choses que j'adore faire",
                 gamesTitle: "Jeux vidéo",
                 gamesDesc: "Le jeu est l'une de mes plus grandes passions. Je passe beaucoup de temps sur une gamme de titres. Le vaste monde ouvert et la liberté créative de Minecraft me permettent de jouer à l'infini. Helldivers est amusant grâce à ses mises à jour constantes. La lutte pour la Super Terre ne s'arrêtera jamais. La scène compétitive de Counter-Strike est extrêmement fun.",
@@ -186,7 +158,6 @@
                 animeDesc: "L'anime a une excellente narration, des styles artistiques uniques et des mondes qu'on ne trouve nulle part ailleurs. L'anime est un type de narration comme aucun autre."
             },
             ru: {
-                backLink: "← На главную",
                 subtitle: "То, что я обожаю делать",
                 gamesTitle: "Видеоигры",
                 gamesDesc: "Игры — одна из моих главных страстей. Я провожу много времени за разными играми. Огромный открытый мир и творческая свобода Minecraft позволяют играть бесконечно. Helldivers интересен благодаря постоянным обновлениям. Борьба за Супер Землю никогда не прекратится. Соревновательная сцена Counter-Strike невероятно увлекательна.",
@@ -200,7 +171,6 @@
                 animeDesc: "В аниме потрясающий сторителлинг, уникальные художественные стили и миры, которых нет нигде больше. Аниме — это вид повествования, не похожий ни на какой другой."
             },
             ja: {
-                backLink: "← ホームに戻る",
                 subtitle: "大好きなこと",
                 gamesTitle: "ビデオゲーム",
                 gamesDesc: "ゲームは私の最大の情熱の一つです。様々なタイトルに多くの時間を費やしています。Minecraftの広大なオープンワールドと創造の自由さは無限に遊ぶことを可能にします。Helldiverは絶え間ないアップデートのおかげで楽しいです。スーパーアースのための戦いは決して終わりません。Counter-Strikeの競技シーンはとても楽しいです。",
@@ -217,7 +187,6 @@
 
         function setLanguage(lang) {
             const t = translations[lang];
-            document.querySelector('.back-link').textContent = t.backLink;
             document.querySelector('.subtitle').textContent = t.subtitle;
             const cards = document.querySelectorAll('.hobby-card');
             const keys = ['games', 'coding', 'friends', 'youtube', 'anime'];
@@ -235,5 +204,6 @@
             setLanguage(savedLang);
         }
     </script>
+<script src="homebar.js"></script>
 </body>
 </html>

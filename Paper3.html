@@ -5,40 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Issue with Democracy | Leonard Farris</title>
     <link rel="stylesheet" href="Papers1-4SS.css">
-    <style>
-        .lang-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px 20px;
-            background: rgba(15, 20, 40, 0.85);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .lang-bar select {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 8px;
-            color: #e0e0e0;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-family: inherit;
-            transition: border-color 0.2s;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-        .lang-bar select:hover,
-        .lang-bar select:focus {
-            border-color: #e94560;
-            outline: none;
-        }
-    </style>
 </head>
 <body>
-    <div class="lang-bar">
+    <nav class="home-bar">
+        <div class="home-links">
+            <a href="index.html" data-nav="about">About Me</a>
+            <a href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a class="current" href="papers.html" data-nav="papers">Papers</a>
+            <a href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
         <select id="lang-select" onchange="setLanguage(this.value)">
             <option value="en">🌐 English</option>
             <option value="pt">🇵🇹 Português</option>
@@ -48,7 +25,7 @@
             <option value="ru">🇷🇺 Русский</option>
             <option value="ja">🇯🇵 日本語</option>
         </select>
-    </div>
+    </nav>
 
     <div class="top-bar">
         <a class="back-link" href="papers.html">&#8592; Back to Papers</a>
@@ -147,5 +124,6 @@
             setLanguage(savedLang);
         }
     </script>
+<script src="homebar.js"></script>
 </body>
 </html>

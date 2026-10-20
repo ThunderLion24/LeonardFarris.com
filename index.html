@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="HomepageSS.css">
-    <title>Homepage | Leonard Farris</title>
+    <title>Leonard Farris</title>
 </head>
 <body>
-    <div class="lang-bar">
+    <div class="container">
+        <div class="hero">
+            <h1>About <span>Me</span></h1>
+            <p class="subtitle">A little bit about who I am</p>
+        </div>
+    </div>
+
+    <nav class="home-bar">
+        <div class="home-links">
+            <a class="current" href="index.html" data-nav="about">About Me</a>
+            <a href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a href="papers.html" data-nav="papers">Papers</a>
+            <a href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
         <select id="lang-select" onchange="setLanguage(this.value)">
             <option value="en">🌐 English</option>
             <option value="pt">🇵🇹 Português</option>
@@ -17,210 +32,282 @@
             <option value="ru">🇷🇺 Русский</option>
             <option value="ja">🇯🇵 日本語</option>
         </select>
-    </div>
+    </nav>
 
     <div class="container">
-        <div class="hero">
-            <h1>Leonard <span>Farris</span></h1>
-            <p class="subtitle">Student at CLIP Oporto International School</p>
 
-            <div class="clock-card">
-                <div class="clock-label">Current Time (BST)</div>
-                <div class="clock-time" id="clock">--:--:--</div>
+        <div class="profile-card">
+            <div class="avatar">LF</div>
+            <div class="profile-info">
+                <h2>Leonard Farris</h2>
+                <p class="profile-tagline">Student &mdash; Porto, Portugal</p>
+            </div>
+        </div>
+
+        <div class="section-grid">
+            <div class="info-card">
+                <span class="icon">🧑</span>
+                <h3>Who I Am</h3>
+                <p>
+                    I'm <span id="age-counter">...</span> and currently living in Matosinhos, Portugal. I attend
+                    <strong>CLIP, Oporto International School</strong>. Moving here from
+                    the United States was a big adjustment — settling into a new country
+                    and culture wasn't very easy, but the kindness of my fellow
+                    classmates made it possible for me to feel welcome.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="icon">📍</span>
+                <h3>Where I'm From</h3>
+                <p>
+                    Originally from <strong>Marietta, Georgia</strong>, I moved to
+                    <strong>Porto, Portugal</strong> at age 14 — I traded my life in America for
+                    a better one in Portugal.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="icon">🎓</span>
+                <h3>My School</h3>
+                <p>
+                    I study at <strong>CLIP, Oporto International School</strong>, an
+                    international school that offers a broad, globally-minded curriculum
+                    and a diverse community of students.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <span class="icon">🎯</span>
+                <h3>My Interests</h3>
+                <p>
+                    Outside of school I have a wide range of hobbies and passions.
+                </p>
+                <a class="hobbies-link" href="Hobbies.html">Explore my hobbies →</a>
             </div>
         </div>
 
         <div class="divider"></div>
 
-        <nav class="nav-grid">
-            <a class="nav-card" href="Aboutme.html">
-                <span class="icon">👤</span>
-                <h2>About Me</h2>
-                <p>Learn more about who I am and my background.</p>
-            </a>
-
-            <a class="nav-card" href="Hobbies.html">
-                <span class="icon">🎯</span>
-                <h2>Hobbies</h2>
-                <p>Explore my interests and what I enjoy doing.</p>
-            </a>
-            
-            <a class="nav-card" href="calculator.html">
-                <span class="icon">🧮</span>
-                <h2>Calculator</h2>
-                <p>Try my calculator project.</p>
-            </a>
-
-
-            <a class="nav-card" href="Reviews.html">
-                <span class="icon">⭐</span>
-                <h2>Reviews</h2>
-                <p>Leave a review or see what others think.</p>
-            </a>
-
-            <a class="nav-card" href="papers.html">
-                <span class="icon">🧠</span>
-                <h2>Papers</h2>
-                <p>Read my papers and assignments.</p>
-            </a>
-            <a class="nav-card" href="CAISE.html">
-                <span class="icon">🧮</span>
-                <h2>CAISE</h2>
-                <p>View my CAISE submissions.</p>
-            </a>
-        </nav>
+        <section class="academics">
+            <h2 class="section-title">Academic <span>Strengths</span></h2>
+            <p class="section-subtitle">Subjects I excel at and enjoy the most</p>
+            <div class="subject-grid">
+                <div class="subject-card">
+                    <span class="subject-icon">➕</span>
+                    <h3>Mathematics</h3>
+                    <p>Strong analytical and problem-solving skills, from algebra to geometry.</p>
+                </div>
+                <div class="subject-card">
+                    <span class="subject-icon">🔬</span>
+                    <h3>Science</h3>
+                    <p>Fascinated by how the world works, from biology to physics and chemistry.</p>
+                </div>
+                <div class="subject-card">
+                    <span class="subject-icon">🏛️</span>
+                    <h3>History</h3>
+                    <p>Passionate about understanding the past and how it shapes our world today.</p>
+                </div>
+            </div>
+        </section>
 
         <footer>
             &copy; 2026 Leonard Farris &mdash; CLIP Oporto International School
         </footer>
     </div>
-
-    <script>
-        const translations = {
-            en: {
-                subtitle: "Student at CLIP Oporto International School",
-                clockLabel: "Current Time (BST)",
-                aboutTitle: "About Me",
-                aboutDesc: "Learn more about who I am and my background.",
-                hobbiesTitle: "Hobbies",
-                hobbiesDesc: "Explore my interests and what I enjoy doing.",
-                calcTitle: "Calculator",
-                calcDesc: "Try my calculator project.",
-                reviewsTitle: "Reviews",
-                reviewsDesc: "Leave a review or see what others think.",
-                psychTitle: "Papers",
-                psychDesc: "Read my writen papers and assignments.",
-                caiseTitle: "CAISE",
-                caiseDesc: "View my Caise Portfolio."
-            },
-            pt: {
-                subtitle: "Estudante na Escola Internacional CLIP Oporto",
-                clockLabel: "Hora Atual (BST)",
-                aboutTitle: "Sobre Mim",
-                aboutDesc: "Saiba mais sobre quem sou e o meu percurso.",
-                hobbiesTitle: "Passatempos",
-                hobbiesDesc: "Explore os meus interesses e o que gosto de fazer.",
-                calcTitle: "Calculadora",
-                calcDesc: "Experimente o meu projeto de calculadora.",
-                reviewsTitle: "Avaliações",
-                reviewsDesc: "Deixe uma avaliação ou veja o que os outros pensam.",
-                psychTitle: "Papel",
-                psychDesc: "Leia os meus trabalhos e tarefas.",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            },
-            de: {
-                subtitle: "Schüler an der CLIP Oporto International School",
-                clockLabel: "Aktuelle Uhrzeit (BST)",
-                aboutTitle: "Über mich",
-                aboutDesc: "Erfahre mehr über mich und meinen Hintergrund.",
-                hobbiesTitle: "Hobbys",
-                hobbiesDesc: "Entdecke meine Interessen und was ich gerne mache.",
-                calcTitle: "Rechner",
-                calcDesc: "Probiere mein Taschenrechner-Projekt aus.",
-                reviewsTitle: "Bewertungen",
-                reviewsDesc: "Hinterlasse eine Bewertung oder lies, was andere denken.",
-                psychTitle: "Arbeiten",
-                psychDesc: "Lies meine Arbeiten und Aufgaben.",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            },
-            es: {
-                subtitle: "Estudiante en CLIP Oporto International School",
-                clockLabel: "Hora actual (BST)",
-                aboutTitle: "Sobre mí",
-                aboutDesc: "Conoce más sobre quién soy y mi trayectoria.",
-                hobbiesTitle: "Pasatiempos",
-                hobbiesDesc: "Explora mis intereses y lo que disfruto hacer.",
-                calcTitle: "Calculadora",
-                calcDesc: "Prueba mi proyecto de calculadora.",
-                reviewsTitle: "Reseñas",
-                reviewsDesc: "Deja una reseña o ve lo que otros piensan.",
-                psychTitle: "Trabajos",
-                psychDesc: "Lee mis ensayos y tareas.",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            },
-            fr: {
-                subtitle: "Élève à la CLIP Oporto International School",
-                clockLabel: "Heure actuelle (BST)",
-                aboutTitle: "À propos de moi",
-                aboutDesc: "En savoir plus sur qui je suis et mon parcours.",
-                hobbiesTitle: "Loisirs",
-                hobbiesDesc: "Découvrez mes intérêts et ce que j'aime faire.",
-                calcTitle: "Calculatrice",
-                calcDesc: "Essayez mon projet de calculatrice.",
-                reviewsTitle: "Avis",
-                reviewsDesc: "Laissez un avis ou voyez ce que les autres pensent.",
-                psychTitle: "Travaux",
-                psychDesc: "Lisez mes dissertations et travaux.",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            },
-            ru: {
-                subtitle: "Студент в CLIP Oporto International School",
-                clockLabel: "Текущее время (BST)",
-                aboutTitle: "Обо мне",
-                aboutDesc: "Узнайте больше о том, кто я и каков мой путь.",
-                hobbiesTitle: "Хобби",
-                hobbiesDesc: "Исследуйте мои интересы и то, что мне нравится делать.",
-                calcTitle: "Калькулятор",
-                calcDesc: "Попробуйте мой проект калькулятора.",
-                reviewsTitle: "Отзывы",
-                reviewsDesc: "Оставьте отзыв или посмотрите, что думают другие.",
-                psychTitle: "Работы",
-                psychDesc: "Читайте мои работы и задания.",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            },
-            ja: {
-                subtitle: "CLIPオポルト国際学校の生徒",
-                clockLabel: "現在時刻 (BST)",
-                aboutTitle: "自己紹介",
-                aboutDesc: "私が何者で、どんな経歴かをご覧ください。",
-                hobbiesTitle: "趣味",
-                hobbiesDesc: "私の興味や好きなことを探ってみてください。",
-                calcTitle: "電卓",
-                calcDesc: "電卓プロジェクトを試してみてください。",
-                reviewsTitle: "レビュー",
-                reviewsDesc: "レビューを残すか、他の人の意見をご覧ください。",
-                psychTitle: "論文",
-                psychDesc: "私の論文と課題をお読みください。",
-                caiseTitle: "CAISE",
-                caiseDesc: "No Description Avaliable."
-            }
-        };
-
-        function setLanguage(lang) {
-            const t = translations[lang];
-            document.querySelector('.subtitle').textContent = t.subtitle;
-            document.querySelector('.clock-label').textContent = t.clockLabel;
-            const cards = document.querySelectorAll('.nav-card');
-            const keys = ['about', 'hobbies', 'calc', 'reviews', 'psych'];
-            cards.forEach((card, i) => {
-                card.querySelector('h2').textContent = t[keys[i] + 'Title'];
-                card.querySelector('p').textContent = t[keys[i] + 'Desc'];
-            });
-            localStorage.setItem('lang', lang);
-            document.documentElement.lang = lang;
+<script>
+    const translations = {
+        en: {
+            subtitle: "A little bit about who I am",
+            profileTagline: "Student — Porto, Portugal",
+            whoTitle: "Who I Am",
+            whoBody: `I'm <span id="age-counter">...</span> and currently living in Matosinhos, Portugal. I attend <strong>CLIP, Oporto International School</strong>. Moving here from the United States was a big adjustment — settling into a new country and culture wasn't very easy, but the kindness of my fellow classmates made it possible for me to feel welcome.`,
+            whereTitle: "Where I'm From",
+            whereBody: `Originally from <strong>Marietta, Georgia</strong>, I moved to <strong>Porto, Portugal</strong> at age 14 — I traded my life in America for a better one in Portugal.`,
+            schoolTitle: "My School",
+            schoolBody: `I study at <strong>CLIP, Oporto International School</strong>, an international school that offers a broad, globally-minded curriculum and a diverse community of students.`,
+            interestsTitle: "My Interests",
+            interestsBody: "Outside of school I have a wide range of hobbies and passions.",
+            hobbiesLink: "Explore my hobbies →",
+            academicTitle: "Academic <span>Strengths</span>",
+            academicSubtitle: "Subjects I excel at and enjoy the most",
+            mathTitle: "Mathematics", mathDesc: "Strong analytical and problem-solving skills, from algebra to geometry.",
+            scienceTitle: "Science", scienceDesc: "Fascinated by how the world works, from biology to physics and chemistry.",
+            historyTitle: "History", historyDesc: "Passionate about understanding the past and how it shapes our world today.",
+            yearsOld: "{age} years old"
+        },
+        pt: {
+            subtitle: "Um pouco sobre quem sou",
+            profileTagline: "Estudante — Porto, Portugal",
+            whoTitle: "Quem Sou Eu",
+            whoBody: `Tenho <span id="age-counter">...</span> e vivo atualmente em Matosinhos, Portugal. Frequento a <strong>CLIP, Oporto International School</strong>. Mudar-me dos Estados Unidos foi uma grande adaptação — integrar-me num novo país e cultura não foi muito fácil, mas a simpatia dos meus colegas tornou possível sentir-me bem-vindo.`,
+            whereTitle: "De Onde Sou",
+            whereBody: `Originalmente de <strong>Marietta, Geórgia</strong>, mudei-me para <strong>Porto, Portugal</strong> aos 14 anos — troquei a minha vida na América por uma melhor em Portugal.`,
+            schoolTitle: "A Minha Escola",
+            schoolBody: `Estudo na <strong>CLIP, Oporto International School</strong>, uma escola internacional que oferece um currículo abrangente e voltado para o mundo, com uma comunidade diversificada de estudantes.`,
+            interestsTitle: "Os Meus Interesses",
+            interestsBody: "Fora da escola tenho uma ampla gama de passatempos e paixões.",
+            hobbiesLink: "Explorar os meus passatempos →",
+            academicTitle: "Pontos Fortes <span>Académicos</span>",
+            academicSubtitle: "Disciplinas em que me destaco e mais gosto",
+            mathTitle: "Matemática", mathDesc: "Fortes competências analíticas e de resolução de problemas, desde álgebra à geometria.",
+            scienceTitle: "Ciências", scienceDesc: "Fascinado por como o mundo funciona, da biologia à física e química.",
+            historyTitle: "História", historyDesc: "Apaixonado por compreender o passado e como ele molda o nosso mundo hoje.",
+            yearsOld: "Tenho {age} anos"
+        },
+        de: {
+            subtitle: "Ein bisschen über mich",
+            profileTagline: "Schüler — Porto, Portugal",
+            whoTitle: "Wer ich bin",
+            whoBody: `Ich bin <span id="age-counter">...</span> und lebe derzeit in Matosinhos, Portugal. Ich besuche die <strong>CLIP, Oporto International School</strong>. Der Umzug aus den USA war eine große Umstellung — sich in einem neuen Land einzuleben war nicht leicht, aber die Freundlichkeit meiner Mitschüler ermöglichte es mir, mich willkommen zu fühlen.`,
+            whereTitle: "Woher ich komme",
+            whereBody: `Ursprünglich aus <strong>Marietta, Georgia</strong>, zog ich mit 14 Jahren nach <strong>Porto, Portugal</strong> um — ich tauschte mein Leben in Amerika gegen ein besseres in Portugal.`,
+            schoolTitle: "Meine Schule",
+            schoolBody: `Ich lerne an der <strong>CLIP, Oporto International School</strong>, einer internationalen Schule mit einem umfassenden, weltoffenen Lehrplan und einer vielfältigen Schülergemeinschaft.`,
+            interestsTitle: "Meine Interessen",
+            interestsBody: "Außerhalb der Schule habe ich ein breites Spektrum an Hobbys und Leidenschaften.",
+            hobbiesLink: "Meine Hobbys erkunden →",
+            academicTitle: "Akademische <span>Stärken</span>",
+            academicSubtitle: "Fächer, in denen ich mich auszeichne und am meisten genieße",
+            mathTitle: "Mathematik", mathDesc: "Starke analytische und problemlösende Fähigkeiten, von Algebra bis Geometrie.",
+            scienceTitle: "Naturwissenschaften", scienceDesc: "Fasziniert davon, wie die Welt funktioniert, von Biologie bis Physik und Chemie.",
+            historyTitle: "Geschichte", historyDesc: "Leidenschaft dafür, die Vergangenheit zu verstehen und wie sie unsere heutige Welt prägt.",
+            yearsOld: "{age} Jahre alt"
+        },
+        es: {
+            subtitle: "Un poco sobre quién soy",
+            profileTagline: "Estudiante — Oporto, Portugal",
+            whoTitle: "Quién soy",
+            whoBody: `Tengo <span id="age-counter">...</span> y actualmente vivo en Matosinhos, Portugal. Estudio en el <strong>CLIP, Oporto International School</strong>. Mudarme desde los Estados Unidos fue un gran ajuste — adaptarme a un nuevo país y cultura no fue muy fácil, pero la amabilidad de mis compañeros de clase hizo posible que me sintiera bienvenido.`,
+            whereTitle: "De dónde soy",
+            whereBody: `Originalmente de <strong>Marietta, Georgia</strong>, me mudé a <strong>Oporto, Portugal</strong> a los 14 años — cambié mi vida en América por una mejor en Portugal.`,
+            schoolTitle: "Mi escuela",
+            schoolBody: `Estudio en el <strong>CLIP, Oporto International School</strong>, una escuela internacional que ofrece un currículo amplio y con perspectiva global, con una comunidad diversa de estudiantes.`,
+            interestsTitle: "Mis intereses",
+            interestsBody: "Fuera de la escuela tengo una amplia gama de pasatiempos y pasiones.",
+            hobbiesLink: "Explorar mis pasatiempos →",
+            academicTitle: "Fortalezas <span>Académicas</span>",
+            academicSubtitle: "Materias en las que destaco y más disfruto",
+            mathTitle: "Matemáticas", mathDesc: "Fuertes habilidades analíticas y de resolución de problemas, desde álgebra hasta geometría.",
+            scienceTitle: "Ciencias", scienceDesc: "Fascinado por cómo funciona el mundo, desde biología hasta física y química.",
+            historyTitle: "Historia", historyDesc: "Apasionado por entender el pasado y cómo moldea nuestro mundo actual.",
+            yearsOld: "Tengo {age} años"
+        },
+        fr: {
+            subtitle: "Un peu qui je suis",
+            profileTagline: "Élève — Porto, Portugal",
+            whoTitle: "Qui je suis",
+            whoBody: `J'ai <span id="age-counter">...</span> et je vis actuellement à Matosinhos, au Portugal. Je fréquente le <strong>CLIP, Oporto International School</strong>. Déménager depuis les États-Unis a été un grand ajustement — s'installer dans un nouveau pays et une nouvelle culture n'a pas été très facile, mais la gentillesse de mes camarades de classe a rendu possible de me sentir bienvenu.`,
+            whereTitle: "D'où je viens",
+            whereBody: `Originaire de <strong>Marietta, Géorgie</strong>, j'ai déménagé à <strong>Porto, Portugal</strong> à 14 ans — j'ai échangé ma vie en Amérique contre une meilleure au Portugal.`,
+            schoolTitle: "Mon école",
+            schoolBody: `J'étudie au <strong>CLIP, Oporto International School</strong>, une école internationale qui propose un programme large et ouvert sur le monde, avec une communauté d'élèves diversifiée.`,
+            interestsTitle: "Mes intérêts",
+            interestsBody: "En dehors de l'école, j'ai un large éventail de loisirs et de passions.",
+            hobbiesLink: "Explorer mes loisirs →",
+            academicTitle: "Points Forts <span>Académiques</span>",
+            academicSubtitle: "Les matières dans lesquelles j'excelle et que j'apprécie le plus",
+            mathTitle: "Mathématiques", mathDesc: "Solides compétences analytiques et de résolution de problèmes, de l'algèbre à la géométrie.",
+            scienceTitle: "Sciences", scienceDesc: "Fasciné par le fonctionnement du monde, de la biologie à la physique et la chimie.",
+            historyTitle: "Histoire", historyDesc: "Passionné par la compréhension du passé et de la façon dont il façonne notre monde aujourd'hui.",
+            yearsOld: "{age} ans"
+        },
+        ru: {
+            subtitle: "Немного обо мне",
+            profileTagline: "Студент — Порту, Португалия",
+            whoTitle: "Кто я",
+            whoBody: `Мне <span id="age-counter">...</span> и я сейчас живу в Матозиньюше, Португалия. Я учусь в <strong>CLIP, Oporto International School</strong>. Переезд из США был большой переменой — обустроиться в новой стране и культуре было непросто, но доброта одноклассников помогла мне почувствовать себя желанным гостем.`,
+            whereTitle: "Откуда я",
+            whereBody: `Я родился в <strong>Мариетте, Джорджия</strong>, и переехал в <strong>Порту, Португалия</strong> в 14 лет — я обменял жизнь в Америке на лучшую жизнь в Португалии.`,
+            schoolTitle: "Моя школа",
+            schoolBody: `Я учусь в <strong>CLIP, Oporto International School</strong> — международной школе, предлагающей широкую, глобально ориентированную программу и разнообразное сообщество студентов.`,
+            interestsTitle: "Мои интересы",
+            interestsBody: "Помимо учёбы у меня широкий круг хобби и увлечений.",
+            hobbiesLink: "Изучить мои хобби →",
+            academicTitle: "Академические <span>Достижения</span>",
+            academicSubtitle: "Предметы, в которых я преуспеваю и которые мне нравятся больше всего",
+            mathTitle: "Математика", mathDesc: "Сильные аналитические навыки и навыки решения задач: от алгебры до геометрии.",
+            scienceTitle: "Науки", scienceDesc: "Меня завораживает устройство мира: от биологии до физики и химии.",
+            historyTitle: "История", historyDesc: "Страстный интерес к пониманию прошлого и его влияния на наш мир сегодня.",
+            yearsOld: "{age} лет"
+        },
+        ja: {
+            subtitle: "私について少し",
+            profileTagline: "学生 — ポルト、ポルトガル",
+            whoTitle: "私について",
+            whoBody: `私は<span id="age-counter">...</span>で、現在ポルトガルのマトジニョスに住んでいます。<strong>CLIP、オポルト国際学校</strong>に通っています。アメリカから引っ越してくるのは大きな変化でした — 新しい国と文化に慣れるのは簡単ではありませんでしたが、クラスメートの優しさのおかげで歓迎されていると感じることができました。`,
+            whereTitle: "出身地",
+            whereBody: `もともと<strong>ジョージア州マリエッタ</strong>出身で、14歳のときに<strong>ポルトガルのポルト</strong>に引っ越しました — アメリカでの生活をより良いポルトガルでの生活に変えました。`,
+            schoolTitle: "私の学校",
+            schoolBody: `<strong>CLIP、オポルト国際学校</strong>で学んでいます。この国際学校は、幅広くグローバルな視点を持つカリキュラムと多様な生徒コミュニティを提供しています。`,
+            interestsTitle: "私の興味",
+            interestsBody: "学校の外では、幅広い趣味や情熱があります。",
+            hobbiesLink: "趣味を探る →",
+            academicTitle: "学業の<span>強み</span>",
+            academicSubtitle: "得意で楽しんでいる教科",
+            mathTitle: "数学", mathDesc: "代数から幾何学まで、強い分析力と問題解決能力を持っています。",
+            scienceTitle: "理科", scienceDesc: "生物から物理、化学まで、世界の仕組みに魅了されています。",
+            historyTitle: "歴史", historyDesc: "過去を理解し、それが現代の世界をどのように形作っているかに情熱を持っています。",
+            yearsOld: "{age}歳"
         }
+    };
 
-        function updateClock() {
-            const now = new Date();
-            const bst = new Date(now); 
-            const h = String(bst.getHours()).padStart(2, '0');
-            const m = String(bst.getMinutes()).padStart(2, '0');
-            const s = String(bst.getSeconds()).padStart(2, '0');
-            document.getElementById('clock').textContent = h + ':' + m + ':' + s;
-        }
-        updateClock();
-        setInterval(updateClock, 1000);
+    let currentLang = 'en';
+    let currentAge = null;
 
-        const savedLang = localStorage.getItem('lang');
-        if (savedLang && translations[savedLang]) {
-            document.getElementById('lang-select').value = savedLang;
-            setLanguage(savedLang);
+    function updateAgeDisplay() {
+        if (currentAge !== null) {
+            const ageEl = document.getElementById('age-counter');
+            if (ageEl) ageEl.textContent = translations[currentLang].yearsOld.replace('{age}', currentAge);
         }
-    </script>
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.querySelector('.subtitle').textContent = t.subtitle;
+        document.querySelector('.profile-tagline').textContent = t.profileTagline;
+
+        const infoCards = document.querySelectorAll('.info-card');
+        const infoKeys = ['who', 'where', 'school', 'interests'];
+        infoCards.forEach((card, i) => {
+            card.querySelector('h3').textContent = t[infoKeys[i] + 'Title'];
+            card.querySelector('p').innerHTML = t[infoKeys[i] + 'Body'];
+        });
+        updateAgeDisplay();
+
+        document.querySelector('.hobbies-link').textContent = t.hobbiesLink;
+        document.querySelector('.section-title').innerHTML = t.academicTitle;
+        document.querySelector('.section-subtitle').textContent = t.academicSubtitle;
+
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const subjectKeys = ['math', 'science', 'history'];
+        subjectCards.forEach((card, i) => {
+            card.querySelector('h3').textContent = t[subjectKeys[i] + 'Title'];
+            card.querySelector('p').textContent = t[subjectKeys[i] + 'Desc'];
+        });
+
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function updateAge() {
+        const now = new Date();
+        const birthYear = 2012;
+        const hasBirthdayOccurred = now.getMonth() > 2 || (now.getMonth() === 2 && now.getDate() >= 1);
+        currentAge = now.getFullYear() - birthYear - (hasBirthdayOccurred ? 0 : 1);
+        updateAgeDisplay();
+        const nextBirthday = new Date(now.getFullYear() + (hasBirthdayOccurred ? 1 : 0), 2, 1);
+        setTimeout(() => { updateAge(); }, nextBirthday - now);
+    }
+    updateAge();
+
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang && translations[savedLang]) {
+        document.getElementById('lang-select').value = savedLang;
+        setLanguage(savedLang);
+    }
+</script>
+<script src="homebar.js"></script>
 </body>
 </html>

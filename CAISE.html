@@ -9,12 +9,32 @@
 <body>
     <div class="container">
         <header class="hero">
-            <a href="index.html" class="back-link">&s#8592; Back to Home</a>
             <h1>CAISE</h1>
             <p class="subtitle"></p>
         </header>
+    </div>
 
-        <div class="divider"></div>
+    <nav class="home-bar">
+        <div class="home-links">
+            <a href="index.html" data-nav="about">About Me</a>
+            <a href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a href="papers.html" data-nav="papers">Papers</a>
+            <a class="current" href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
+        <select id="lang-select">
+            <option value="en">🌐 English</option>
+            <option value="pt">🇵🇹 Português</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="ja">🇯🇵 日本語</option>
+        </select>
+    </nav>
+
+    <div class="container">
 
         <div class="card-grid">
             <div class="card">
@@ -39,5 +59,6 @@
             </div>
         </div>
     </div>
+<script src="homebar.js"></script>
 </body>
 </html>

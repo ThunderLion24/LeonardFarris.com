@@ -8,7 +8,22 @@
     <title>Papers | Leonard Farris</title>
 </head>
 <body>
-    <div class="lang-bar">
+    <div class="container">
+        <div class="hero">
+            <h1>Pap<span>ers</span></h1>
+            <p class="subtitle">Writen Papers</p>
+        </div>
+    </div>
+
+    <nav class="home-bar">
+        <div class="home-links">
+            <a href="index.html" data-nav="about">About Me</a>
+            <a href="Hobbies.html" data-nav="hobbies">Hobbies</a>
+            <a href="calculator.html" data-nav="calc">Calculator</a>
+            <a href="Reviews.html" data-nav="reviews">Reviews</a>
+            <a class="current" href="papers.html" data-nav="papers">Papers</a>
+            <a href="CAISE.html" data-nav="caise">CAISE</a>
+        </div>
         <select id="lang-select" onchange="setLanguage(this.value)">
             <option value="en">🌐 English</option>
             <option value="pt">🇵🇹 Português</option>
@@ -18,15 +33,9 @@
             <option value="ru">🇷🇺 Русский</option>
             <option value="ja">🇯🇵 日本語</option>
         </select>
-    </div>
+    </nav>
 
     <div class="container">
-        <div class="hero">
-            <h1>Pap<span>ers</span></h1>
-            <p class="subtitle">Writen Papers</p>
-        </div>
-
-        <div class="divider"></div>
 
         <nav class="nav-grid">
             <a class="nav-card" href="Paper1.html">
@@ -146,5 +155,6 @@
             setLanguage(savedLang);
         }
     </script>
+<script src="homebar.js"></script>
 </body>
 </html>

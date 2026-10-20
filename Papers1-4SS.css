@@ -1,5 +1,11 @@
-/* Theme modeled on chrisfarris.com (Travelify, dark variant) */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+    --accent: #8b5cf6;
+    --accent-rgb: 139, 92, 246;
+    --bg: linear-gradient(135deg, #1a1028 0%, #1e1240 50%, #2d1b69 100%);
+    --bar-bg: rgba(20, 10, 40, 0.85);
+}
 
 * {
     margin: 0;
@@ -8,35 +14,35 @@
 }
 
 body {
-    font: 16px Arial, sans-serif;
+    font: 16px 'Ubuntu', sans-serif;
     line-height: 22px;
-    background: #1d1d1d;
-    color: #8c8c8c;
-    border-top: 6px solid #8c8c8c;
+    background: var(--bg);
+    color: #e0e0e0;
+    border-top: 6px solid var(--accent);
     min-height: 100vh;
     word-wrap: break-word;
 }
 
 ::selection {
-    background: #8c8c8c;
+    background: var(--accent);
     color: #fff;
 }
 
 a {
-    color: #1e90ff;
+    color: var(--accent);
     text-decoration: none;
 }
 
 a:hover,
 a:focus,
 a:active {
-    color: #680000;
+    color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: normal;
-    color: #af6969;
+    color: #ffffff;
 }
 
 .container {
@@ -45,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 20px;
 }
 
-/* Header: mirrors #site-title / #site-description */
+/* Header */
 .hero {
     padding: 30px 0 35px;
 }
@@ -53,79 +59,107 @@ h1, h2, h3, h4, h5, h6 {
 .hero h1 {
     font: 36px 'Ubuntu', sans-serif;
     line-height: 42px;
-    color: #f8f8f8;
+    color: #ffffff;
     letter-spacing: -2px;
     margin-bottom: 4px;
 }
 
 .hero h1 span {
-    color: #af6969;
+    color: var(--accent);
 }
 
 .hero .subtitle {
-    font: 200 14px helvetica, sans-serif;
+    font-size: 14px;
     line-height: 20px;
-    color: #999;
+    color: #a0aec0;
 }
 
 .back-link {
     display: inline-block;
     margin-bottom: 15px;
     font-size: 14px;
+    color: #a0aec0;
+}
+
+.back-link:hover {
+    color: var(--accent);
 }
 
 .divider {
     height: 0;
-    border-top: 1px solid #333;
+    border-top: 1px solid var(--accent);
     margin: 30px 0;
 }
 
-/* Language bar: mirrors #main-nav.
-   "body" prefix outranks the inline <style> block in each page. */
-body .lang-bar {
-    position: static;
+/* Home bar: site navigation plus language picker.
+   Side padding lines the links up with the content column. */
+.home-bar {
     display: flex;
-    justify-content: flex-end;
-    padding: 0 20px;
-    background: #300a0a;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    backdrop-filter: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 max(20px, calc((100% - 978px) / 2));
+    margin-bottom: 30px;
+    background: var(--bar-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-body .lang-bar select {
-    height: 32px;
-    padding: 0 12px;
+.home-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home-links a {
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 18px;
+    font-size: 17px;
+    color: #e0e0e0;
+}
+
+.home-links a:hover,
+.home-links a:focus,
+.home-links a.current {
+    background: rgba(var(--accent-rgb), 0.2);
+    color: #ffffff;
+}
+
+.home-links a.current {
+    box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+.home-bar select {
+    height: 48px;
+    padding: 0 18px;
     background: transparent;
     border: 0;
-    border-radius: 0;
-    color: #fff;
-    font: 14px Arial, sans-serif;
+    color: #e0e0e0;
+    font: 16px 'Ubuntu', sans-serif;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
 }
 
-body .lang-bar select:hover,
-body .lang-bar select:focus {
-    background: #8c8c8c;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+.home-bar select:hover,
+.home-bar select:focus {
+    background: rgba(var(--accent-rgb), 0.2);
     outline: none;
 }
 
-body .lang-bar select option {
-    background: #1d1d1d;
-    color: #fff;
+.home-bar select option {
+    background: #1a1a2e;
+    color: #e0e0e0;
 }
 
-/* Footer: mirrors #site-generator */
+/* Footer */
 footer {
     margin-top: 40px;
     padding: 5px 0 20px;
-    border-top: 2px dashed #333;
-    color: #999;
+    border-top: 2px dashed rgba(255, 255, 255, 0.15);
+    color: #4a5568;
     font-size: 12px;
 }
 
@@ -138,33 +172,34 @@ body > footer {
 }
 
 .top-bar {
-    padding-top: 20px;
+    padding-top: 0;
 }
 
-/* Article: mirrors a single post on a black background */
+/* Article panel */
 .article {
-    background: #000;
-    padding: 20px 2.5% 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 2.5% 30px;
 }
 
 .meta {
     text-align: center;
 }
 
-/* Badges: mirror the "read more" buttons */
 .badge {
     display: inline-block;
     margin: 0 2px;
-    padding: 2px 8px;
-    background: #8c8c8c;
+    padding: 1px 8px;
+    background: rgba(var(--accent-rgb), 0.15);
+    border: 1px solid rgba(var(--accent-rgb), 0.4);
     border-radius: 2px;
-    color: #fff;
+    color: var(--accent);
     font-size: 12px;
     line-height: 18px;
 }
 
-/* Title: mirrors .entry-title */
 .article h1 {
     font: 32px 'Ubuntu', sans-serif;
     line-height: 1.4em;
@@ -176,13 +211,12 @@ body > footer {
 .byline {
     text-align: center;
     font-size: 13px;
-    color: #999;
+    color: #a0aec0;
     padding-bottom: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
 }
 
-/* Body text: mirrors .entry-content */
 #paper-content h1 {
     font-size: 28px;
     text-align: left;
@@ -194,10 +228,11 @@ body > footer {
     line-height: 30px;
     letter-spacing: -1px;
     margin: 25px 0 10px;
+    color: var(--accent);
 }
 
 #paper-content p {
-    color: #c1c1c1;
+    color: #e0e0e0;
     line-height: 26px;
     margin-bottom: 16px;
 }
