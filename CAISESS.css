@@ -202,6 +202,11 @@ p {
     transition: border-color 0.2s, background 0.2s;
 }
 
+a.card {
+    display: block;
+    color: #e0e0e0;
+}
+
 .card:hover {
     border-color: var(--accent);
     background: rgba(var(--accent-rgb), 0.08);
