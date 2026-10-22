@@ -48,6 +48,10 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Hackathon</td>
+                    <td>Unknown</td>
+                </tr>
             </tbody>
             <tfoot>
                 <tr>
@@ -62,7 +66,7 @@
     // Time log total: adds up the hours in each row's second column.
     // Cells without a number (like "Unknown") count as 0.
     (function () {
-        const goal = 40;
+        const goal = 30;
         let hours = 0;
         document.querySelectorAll('#time-log tbody tr').forEach(row => {
             hours += parseFloat(row.cells[1].textContent) || 0;
