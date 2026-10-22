@@ -36,8 +36,39 @@
 
     <div class="container">
         <a class="back-link" href="CAISE.html">&#8592; Back to CAISE</a>
+        <a class="jump-link" href="#time-log">Jump to time log &#8595;</a>
 
+        <div class="divider"></div>
+
+        <table class="t-chart" id="time-log">
+            <thead>
+                <tr>
+                    <th>Education</th>
+                    <th>Time spent</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th id="time-total">0/40 hours</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 <script src="homebar.js"></script>
+<script>
+    // Time log total: adds up the hours in each row's second column.
+    // Cells without a number (like "Unknown") count as 0.
+    (function () {
+        const goal = 40;
+        let hours = 0;
+        document.querySelectorAll('#time-log tbody tr').forEach(row => {
+            hours += parseFloat(row.cells[1].textContent) || 0;
+        });
+        document.getElementById('time-total').textContent = hours + '/' + goal + ' hours';
+    })();
+</script>
 </body>
 </html>
